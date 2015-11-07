@@ -24,24 +24,18 @@ export default class Client {
 
   answerCall(call) {
     return getcam()
-      .then(selfStream => {
-        ui.setSelfStream(selfStream);
-        return this._answer(call, selfStream);
-      }).then(peerStream => {
-        ui.setPeerStream(peerStream);
-        ui.setMode('connected');
-      });
+      .then(selfStream => ui.setSelfStream(selfStream))
+      .then(selfStream => this._answer(call, selfStream))
+      .then(peerStream => ui.setPeerStream(peerStream))
+      .then(() => ui.setMode('connected'));
   }
 
   initialeCall(id) {
     return getcam()
-      .then(selfStream => {
-        ui.setSelfStream(selfStream);
-        return this._call(id, selfStream);
-      }).then(peerStream => {
-        ui.setPeerStream(peerStream);
-        ui.setMode('connected');
-      });
+      .then(selfStream => ui.setSelfStream(selfStream))
+      .then(selfStream => this._call(id, selfStream))
+      .then(peerStream => ui.setPeerStream(peerStream))
+      .then(() => ui.setMode('connected'));
   }
 
   _answer(call, stream) {
