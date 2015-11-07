@@ -2,7 +2,8 @@ import engine from 'engine.io-client';
 import Client from './client';
 import ui from './ui';
 
-window.start = function () {
+jQuery(document).ready(function () {
+
   let socket = engine(location.origin);
   let client;
 
@@ -39,4 +40,4 @@ window.start = function () {
       }
     },
   };
-}
+});
