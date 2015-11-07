@@ -7,8 +7,8 @@
     "mocha": "--require scripts/mocha_runner server/**/__tests__/**/*.js"
   },
   "scripts": {
-    "start": "NODE_ENV=production ./start.sh",
-    "watch": "NODE_ENV=development ./watch.sh",
+    "start": "NODE_ENV=production scripts/start.sh",
+    "watch": "NODE_ENV=development scripts/watch.sh",
     "postinstall": "node scripts/postinstall.js"
   },
   "devDependencies": {
