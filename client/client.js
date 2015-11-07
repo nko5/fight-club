@@ -1,9 +1,10 @@
-import {getWebcam, showStream} from './util/webcam';
+import getcam from './util/getcam';
+import ui from './ui';
 
 export default class Client {
   constructor(id, peer, socket) {
-    this.id = null;
-    this.peer = null;
+    this.id = id;
+    this.peer = peer;
     this.socket = socket;
   }
 
@@ -13,20 +14,29 @@ export default class Client {
   }
 
   sendReady() {
-    client.sendMsg({type: 'ready'});
+    this.sendMsg({type: 'ready'});
+    ui.setMode('waiting');
   }
 
   answerCall(call) {
-    getWebcam().then(stream => {
-      call.answer(stream);
-      call.once('stream', showStream);
+    getcam().then(selfStream => {
+      ui.setSelfStream(selfStream)
+      call.answer(selfStream);
+      call.once('stream', peerStream => {
+        ui.setPeerStream(peerStream);
+        ui.setMode('connected');
+      });
     });
   }
 
-  startMatch(id) {
-    getWebcam().then(stream => {
-      var call = client.peer.call(id, stream);
-      call.once('stream', showStream);
+  callPeer(id) {
+    getcam().then(selfStream => {
+      ui.setSelfStream(selfStream)
+      var call = this.peer.call(id, selfStream);
+      call.once('stream', peerStream => {
+        ui.setPeerStream(peerStream);
+        ui.setMode('connected');
+      });
     });
   }
 }
