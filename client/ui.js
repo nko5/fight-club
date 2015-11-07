@@ -8,7 +8,6 @@ export default {
   },
 
   setPeerStream(stream) {
-    deformFace("peer");
     return this.setStream('video-peer', stream);
   },
 
