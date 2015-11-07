@@ -29,6 +29,15 @@ const handlers = {
   },
 
   match(msg) {
-    client.initialeCall(msg.id);
+    client.initialeCall(msg.id)
+      .then(() => client.sendSchedule(msg.id));
+  },
+
+  time(msg) {
+    if (!msg.ts) {
+      throw new Error('TODO: reconnect with another player');
+    }
+
+    client.trackRestime(msg.ts);
   }
 };

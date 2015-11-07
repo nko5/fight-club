@@ -14,4 +14,8 @@ export default class Client {
   sendMatch(id) {
     this.sendMsg({type: 'match', id});
   }
+
+  sendTime(ts) {
+    this.sendMsg({type: 'time', ts});
+  }
 }

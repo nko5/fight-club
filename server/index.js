@@ -52,4 +52,15 @@ const handlers = {
 
     client.sendMatch(waiting);
   },
+
+  schedule(client, msg) {
+    const opponent = sockets[msg.opponent];
+    if (!opponent) {
+      client.sendTime(null);
+    } else {
+      const ts = Date.now() + 2000 + 3000 * Math.random();
+      client.sendTime(ts);
+      opponent.sendTime(ts);
+    }
+  },
 };

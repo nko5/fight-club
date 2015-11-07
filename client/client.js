@@ -1,5 +1,9 @@
+import {startTracking} from './motion-detection/app'
+import './motion-detection/sample'
 import getcam from './util/getcam';
 import ui from './ui';
+
+const CHEAT_THRESHOLD = 3;
 
 export default class Client {
   constructor(id, peerjs, socket) {
@@ -7,14 +11,20 @@ export default class Client {
     this.peerjs = peerjs;
     this.socket = socket;
     this.stream = null;
+
+    this._countActions = null;
+    this._actionCount = 0;
+    this._actionCallback = null;
   }
 
   setupStream() {
-    return getcam().then(stream => {
-      ui.setSelfStream(stream);
-      this.stream = stream;
-      return stream;
-    });
+    return getcam()
+      .then(stream => ui.setSelfStream(stream))
+      .then(stream => {
+        this.stream = stream;
+        this.startTracking();
+        return stream;
+      })
   }
 
   sendMsg(msg) {
@@ -27,8 +37,28 @@ export default class Client {
     ui.setMode('waiting');
   }
 
+  sendSchedule(id) {
+    this.sendMsg({type: 'schedule', opponent: id});
+  }
+
   requestTime(id) {
     this.sendMsg({type: 'time', id});
+  }
+
+  startTracking() {
+    startTracking(this.stream, () => {
+      console.log('arguments:', arguments);
+    });
+  }
+
+  trackRestime(ts) {
+    var now = Date.now();
+    if (now > ts) {
+      this._track();
+    } else {
+      this._countActions = true;
+      setTimeout(() => this._track(), now - ts);
+    }
   }
 
   answerCall(call) {
@@ -55,5 +85,19 @@ export default class Client {
       var call = this.peerjs.call(id, stream);
       call.once('stream', resolve);
     });
+  }
+
+  _track() {
+    this._countActions = false;
+    console.log('this._actionCount:', this._actionCount);
+    if (this._actionCount > CHEAT_THRESHOLD) {
+      console.log('CHEAT!!');
+      return;
+    }
+
+    this._actionCallback = act => {
+      this._actionCallback = null;
+      console.log('act:', act);
+    };
   }
 }
