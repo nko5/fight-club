@@ -76,3 +76,7 @@ body {
 	width: 10%;
 	height: 100%;
 }
+
+#video-peer {
+  margin-top: 480px;
+}
