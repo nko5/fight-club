@@ -10,4 +10,8 @@ export default class Client {
     console.log('> msg:', msg);
     this.socket.send(JSON.stringify(msg));
   }
+
+  sendMatch(id) {
+    this.sendMsg({type: 'match', id});
+  }
 }

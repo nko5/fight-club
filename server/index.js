@@ -18,19 +18,6 @@ const http = app.listen(8080, err => {
 app.use('/peer', ExpressPeerServer(http));
 
 const sockets = {};
-const handlers = {};
-
-handlers['ready'] = (client, msg) => {
-  const waiting = matcher.getWaiting();
-  if (waiting) {
-    matcher.setWaiting(null);
-  } else {
-    matcher.setWaiting(client.id);
-  }
-
-  client.sendMsg({type: 'match', id: waiting});
-};
-
 engine.attach(http).on('connection', socket => {
   const client = new Client(socket);
   sockets[client.id] = client;
@@ -53,3 +40,16 @@ engine.attach(http).on('connection', socket => {
     matcher.remove(client.id);
   });
 });
+
+const handlers = {
+  ready(client, msg) {
+    const waiting = matcher.getWaiting();
+    if (waiting) {
+      matcher.setWaiting(null);
+    } else {
+      matcher.setWaiting(client.id);
+    }
+
+    client.sendMatch(waiting);
+  },
+};
