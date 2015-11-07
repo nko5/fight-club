@@ -2,9 +2,9 @@ import getcam from './util/getcam';
 import ui from './ui';
 
 export default class Client {
-  constructor(id, peer, socket) {
+  constructor(id, peerjs, socket) {
     this.id = id;
-    this.peer = peer;
+    this.peerjs = peerjs;
     this.socket = socket;
   }
 
@@ -18,25 +18,43 @@ export default class Client {
     ui.setMode('waiting');
   }
 
+  requestTime(id) {
+    this.sendMsg({type: 'time', id});
+  }
+
   answerCall(call) {
-    getcam().then(selfStream => {
-      ui.setSelfStream(selfStream)
-      call.answer(selfStream);
-      call.once('stream', peerStream => {
+    return getcam()
+      .then(selfStream => {
+        ui.setSelfStream(selfStream);
+        return this._answer(call, selfStream);
+      }).then(peerStream => {
         ui.setPeerStream(peerStream);
         ui.setMode('connected');
       });
+  }
+
+  initialeCall(id) {
+    return getcam()
+      .then(selfStream => {
+        ui.setSelfStream(selfStream);
+        return this._call(id, selfStream);
+      }).then(peerStream => {
+        ui.setPeerStream(peerStream);
+        ui.setMode('connected');
+      });
+  }
+
+  _answer(call, stream) {
+    return new Promise((resolve, reject) => {
+      call.answer(stream);
+      call.once('stream', resolve);
     });
   }
 
-  callPeer(id) {
-    getcam().then(selfStream => {
-      ui.setSelfStream(selfStream)
-      var call = this.peer.call(id, selfStream);
-      call.once('stream', peerStream => {
-        ui.setPeerStream(peerStream);
-        ui.setMode('connected');
-      });
+  _call(id, stream) {
+    return new Promise((resolve, reject) => {
+      var call = this.peerjs.call(id, stream);
+      call.once('stream', resolve);
     });
   }
 }
