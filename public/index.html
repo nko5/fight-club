@@ -7,19 +7,33 @@
     <link rel='stylesheet' type='text/css' href='styles/main.css'>
   </head>
   <body>
-    <video id="video-peer"></video>
+    <div id="peer-container">
+      <video id="video-peer" width="400" height="300"></video>
+      <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
+    </div>
 
     <div id="md-container">
-      <video id="video-self" autoplay width="640" height="480"></video>
-      <canvas id="canvas-source" width="640" height="480"></canvas>
-      <canvas id="canvas-highlights" width="640" height="480"></canvas>
-      <canvas id="canvas-blended" width="640" height="480"></canvas>
-      <div id="hotSpots" width="640" height="480">
+      <video id="video-self" autoplay width="400" height="300"></video>
+      <canvas id="canvas-source" width="400" height="300"></canvas>
+      <canvas id="canvas-highlights" width="400" height="300"></canvas>
+      <canvas id="canvas-blended" width="400" height="300"></canvas>
+      <canvas id="canvas-overlay-self" width="400" height="300"></canvas>
+      <canvas id="webgl-self" width="400" height="300"></canvas>
+
+      <div id="hotSpots" width="400" height="300">
         <div id="top-left" class="hotspot"></div>
         <div id="top-right" class="hotspot" style="right: 0%;"></div>
       </div>
     </div>
 
     <script type="text/javascript" src="bundle.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/js/dat.gui.min.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/js/utils.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/js/clmtrackr.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/models/model_pca_20_svm.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/js/Stats.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/js/face_deformer.js"></script>
+    <script type="text/javascript" src="vendor/clmtrackr/js/jquery.min.js"></script>
+    <script type="text/javascript" src="vendor/poisson_new.js"></script>
   </body>
 </html>

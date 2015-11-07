@@ -73,20 +73,56 @@ button {
 
 }
 
-#md-container {
-	position: absolute;
+#peer-container{
+	display: none;
+}
+
+/*#md-container {
+	position: relative;
 	left: 0;
 	top: 0;
 	height: 480px;
 	overflow: hidden;
 	z-index: 0;
+}*/
+
+#md-container, #peer-container {
+	position: relative;
 }
 
-#canvas-source, #canvas-highlights {
-	display: inline;
+
+#canvas-source, #canvas-highlights, #canvas-overlay-peer, #canvas-overlay-self{
 	position: absolute;
 	left: 0;
 	top: 0;
+}
+
+#canvas-overlay-self, #canvas-overlay-peer{
+	-o-transform : scaleX(-1);
+	-webkit-transform : scaleX(-1);
+	transform : scaleX(-1);
+	-ms-filter : fliph; /*IE*/
+	filter : fliph; /*IE*/
+}
+
+#video-peer, #video-self{
+	-o-transform : scaleX(-1);
+	-webkit-transform : scaleX(-1);
+	transform : scaleX(-1);
+	-ms-filter : fliph; /*IE*/
+	filter : fliph; /*IE*/
+
+}
+
+#webgl-self, #webgl-peer{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	-o-transform : scaleX(-1);
+	-webkit-transform : scaleX(-1);
+	transform : scaleX(-1);
+	-ms-filter : fliph; /*IE*/
+	filter : fliph; /*IE*/
 }
 
 /*#canvas-highlights {
