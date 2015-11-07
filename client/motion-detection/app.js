@@ -1,10 +1,10 @@
 export function startTracking(stream) {
-	var video = document.getElementById('webcam');
+	var video = document.getElementById('video-self');
 	initialize();
   video.src = URL.createObjectURL(stream);
 
 	// config start
-	var OUTLINES = true;
+	var OUTLINES = false;
 	// config end
 
 	window.hotSpots = [];
@@ -33,9 +33,6 @@ export function startTracking(stream) {
 	$(window).ready(function () {
 		resize();
 	});
-
-
-
 
 	var lastImageData;
 	var canvasSource = $("#canvas-source")[0];
@@ -167,7 +164,7 @@ export function startTracking(stream) {
 
 	function getCoords() {
 		$('#hotSpots').children().each(function (i, el) {
-			var ratio = $("#canvas-highlights").width() / $('#webcam').width();
+			var ratio = $("#canvas-highlights").width() / $('#video-self').width();
 			hotSpots[i] = {
 				x:      this.offsetLeft / ratio,
 				y:      this.offsetTop / ratio,
