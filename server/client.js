@@ -18,4 +18,8 @@ export default class Client {
   sendTime(ts) {
     this.sendMsg({type: 'time', ts});
   }
+
+  sendResult(id) {
+    this.sendMsg({type: 'result', id});
+  }
 }

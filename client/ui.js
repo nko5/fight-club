@@ -22,7 +22,19 @@ export default {
     });
   },
 
-  ringBell() {
-    alert('BELL!!');
-  }
+  showAttackBell() {
+    console.log('BELL!!');
+  },
+
+  showSelfAttack(type) {
+    console.log('ATTACK:PEER!', type);
+  },
+
+  showPeerAttack(type) {
+    console.log('ATTACK:SELF!', type);
+  },
+
+  showWinMessage() {
+    console.log('WIN!');
+  },
 };
