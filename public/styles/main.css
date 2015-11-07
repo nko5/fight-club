@@ -135,6 +135,7 @@ button {
 }
 
 #video-self {
+  display: none;
   margin-left: 20px;
   margin-top: -11px;
 }

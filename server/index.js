@@ -18,6 +18,8 @@ const http = app.listen(8080, err => {
 app.use('/peer', ExpressPeerServer(http));
 
 const sockets = {};
+const reswait = {};
+
 engine.attach(http).on('connection', socket => {
   const client = new Client(socket);
   sockets[client.id] = client;
@@ -37,6 +39,7 @@ engine.attach(http).on('connection', socket => {
 
   socket.on('close', () => {
     delete sockets[client.id];
+    delete reswait[client.id];
     matcher.remove(client.id);
   });
 });
@@ -51,5 +54,39 @@ const handlers = {
     }
 
     client.sendMatch(waiting);
+  },
+
+  schedule(client, msg) {
+    const opponent = sockets[msg.opponent];
+    if (!opponent) {
+      client.sendTime(null);
+      return;
+    }
+
+    const ts = Date.now() + 2000 + Math.floor(5000 * Math.random());
+    client.sendTime(ts);
+    opponent.sendTime(ts);
+  },
+
+  restime(client, msg) {
+    const opponent = sockets[msg.opponent];
+    if (!opponent) {
+      client.sendResult(null);
+      return;
+    }
+
+    const opponentRestime = reswait[msg.opponent];
+    if (!opponentRestime) {
+      reswait[client.id] = msg.millis;
+      return;
+    }
+
+    if (opponentRestime > msg.millis) {
+      client.sendResult(client.id);
+      opponent.sendResult(client.id);
+    } else {
+      client.sendResult(msg.opponent);
+      opponent.sendResult(msg.opponent);
+    }
   },
 };
