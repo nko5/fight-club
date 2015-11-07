@@ -1,4 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+	text-align: center;;
+	overflow: hidden;
+
 	background: #FBFBF8;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
@@ -6,6 +14,51 @@ body {
 	margin: 0;
 	color: #333;
 }
+
+h2 {
+  font-family: "Merriweather", "Roboto", sans-serif;
+  margin-top: 15px;
+}
+
+h2 img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+p {
+  margin: 10px 0;
+}
+
+#gw > div {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.wrapper {
+  margin: auto;
+}
+
+.page {
+  display: none;
+}
+
+.welcome {
+  margin: auto;
+  width: 600px;
+  display: block;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Fight Club */
 
 .black-background {
 	background-color: #000;
@@ -79,4 +132,9 @@ body {
 
 #video-peer {
   margin-top: 480px;
+}
+
+#video-self {
+  margin-left: 20px;
+  margin-top: -11px;
 }
