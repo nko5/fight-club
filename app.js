@@ -6,9 +6,10 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 });
 
-//Get the dummy data
-require('./server/ddata.js');
+app.listen(8080, function (err) {
+  if(err) {
+    throw err;
+  }
 
-var port = 8080;
-app.listen(port);
-console.log('Express server started on port %s', port);
+  console.log('Express server started on port 8080');
+});
