@@ -1,17 +1,55 @@
+import path from 'path';
 import express from 'express';
+import engine from 'engine.io';
 import {ExpressPeerServer} from 'peer';
-import {HTTPMatcher} from './matcher.js';
+import matcher from './matcher';
+import Client from './client';
 
 const app = express();
-app.use(express.static('public'));
-app.use('/ready', HTTPMatcher);
+const staticPath = path.resolve(__dirname, '../public');
+app.use(express.static(staticPath));
 
-const server = app.listen(8080, function (err) {
-  if (err) {
-    throw err;
-  }
-
-  console.log('listening:', 8080);
+const http = app.listen(8080, err => {
+  if (err) throw err;
+  console.log('listening on port:', 8080);
 });
 
-app.use('/peer', ExpressPeerServer(server));
+// start our own peerjs signalling server
+app.use('/peer', ExpressPeerServer(http));
+
+const sockets = {};
+const handlers = {};
+
+handlers['ready'] = (client, msg) => {
+  const waiting = matcher.getWaiting();
+  if (waiting) {
+    matcher.setWaiting(null);
+  } else {
+    matcher.setWaiting(client.id);
+  }
+
+  client.sendMsg({type: 'match', id: waiting});
+};
+
+engine.attach(http).on('connection', socket => {
+  const client = new Client(socket);
+  sockets[client.id] = client;
+
+  // send a randomly generated client.id
+  // this id will be used as peerJS peerId
+  client.sendMsg({type: 'init', id: client.id});
+
+  socket.on('message', data => {
+    const msg = JSON.parse(data);
+    console.log('< msg:', msg);
+
+    if (handlers[msg.type]) {
+      handlers[msg.type](client, msg);
+    }
+  });
+
+  socket.on('close', () => {
+    delete sockets[client.id];
+    matcher.remove(client.id);
+  });
+});

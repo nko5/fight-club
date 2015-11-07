@@ -7,23 +7,24 @@
     "mocha": "--require scripts/mocha_runner server/**/__tests__/**/*.js"
   },
   "scripts": {
-    "start": "NODE_ENV=production scripts/start.sh",
-    "watch": "NODE_ENV=development scripts/watch.sh",
+    "start": "make start",
+    "watch": "make watch",
     "postinstall": "node scripts/postinstall.js"
   },
   "devDependencies": {
-    "babel": "6.x.x",
-    "babel-cli": "6.x.x",
     "babel-preset-es2015": "6.x.x",
-    "babel-preset-stage-0": "^6.1.2",
-    "nodemon": "1.8.x",
-    "webpack": "1.12.x"
+    "babel-preset-stage-0": "6.x.x",
+    "babelify": "7.x.x",
+    "browserify": "12.x.x",
+    "nodemon": "1.x.x"
   },
   "dependencies": {
     "babel-core": "6.x.x",
-    "compression": "1.6.x",
+    "engine.io": "1.5.x",
+    "engine.io-client": "1.5.x",
     "express": "4.x.x",
     "isomorphic-fetch": "2.2.x",
+    "node-uuid": "1.4.x",
     "peer": "0.2.x"
   }
 }
