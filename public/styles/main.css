@@ -133,3 +133,8 @@ button {
 #video-peer {
   margin-top: 480px;
 }
+
+#video-self {
+  margin-left: 20px;
+  margin-top: -11px;
+}
