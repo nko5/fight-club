@@ -150,7 +150,7 @@ video {
 }
 
 #canvas-source, #canvas-highlights {
-	display: none;
+	display: inline;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -186,24 +186,7 @@ video {
 }
 
 /* Sample hotspots */
-#one {
+.hotspot {
 	width: 10%;
-	height: 20%;
-	top: 50%;
-	left: 0;
-	margin-top: -10%;
-}
-
-#another {
-	width: 20%;
-	height: 10%;
-	top: 0;
-	left: 50%;
-	margin-left: -10%;
-}
-
-.link {
-	font-size: 22px;
-	color: #fff;
-	padding: .5%;
+	height: 100%;
 }

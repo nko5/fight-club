@@ -9,17 +9,12 @@
 		}, 230);
 	});
 
-	// example using a class
-	$('.link').on('motion', function(ev, data){
-		console.log('motion detected on a link to', data.spot.el.href);
-	});
-
 	// examples for id usage
-	$('#one').on('motion', function(){
-		console.log('touched one');
+	$('#top-left').on('motion', function(){
+		console.log('left');
 	});
 
-	$('#another').on('motion', function(){
-		console.log('another');
+	$('#top-right').on('motion', function(){
+		console.log('right');
 	});
 })();

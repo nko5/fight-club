@@ -1,7 +1,7 @@
 (function () {
 
 	// config start
-	var OUTLINES = false;
+	var OUTLINES = true;
 	// config end
 
 	window.hotSpots = [];
@@ -29,25 +29,7 @@
 	}
 	$(window).resize(resize);
 	$(window).ready(function () {
-		resize();
-		$('#watchVideo').click(function () {
-			$(".browsers").fadeOut();
-			$(".browsersWithVideo").delay(300).fadeIn();
-			$("#video-demo").delay(300).fadeIn();
-			$("#video-demo")[0].play();
-			$('.backFromVideo').fadeIn();
-			event.stopPropagation();
-			return false;
-		});
-		$('.backFromVideo a').click(function () {
-			$(".browsersWithVideo").fadeOut();
-			$('.backFromVideo').fadeOut();
-			$(".browsers").fadeIn();
-			$("#video-demo")[0].pause();
-			$('#video-demo').fadeOut();
-			event.stopPropagation();
-			return false;
-		});
+		resize(); 
 	});
 
 	function hasGetUserMedia() {
@@ -69,17 +51,17 @@
 	};
 
 	if (navigator.getUserMedia) {
-		navigator.getUserMedia({audio: true, video: true}, function (stream) {
+		navigator.getUserMedia({audio: false, video: true}, function (stream) {
 			video.src = stream;
 			initialize();
 		}, webcamError);
 	} else if (navigator.mozGetUserMedia) {
-		navigator.mozGetUserMedia({audio: true, video: true}, function (stream) {
+		navigator.mozGetUserMedia({audio: false, video: true}, function (stream) {
 			video.mozSrcObject = stream;
 			initialize();
 		}, webcamError);
 	} else if (navigator.webkitGetUserMedia) {
-		navigator.webkitGetUserMedia({audio: true, video: true}, function (stream) {
+		navigator.webkitGetUserMedia({audio: false, video: true}, function (stream) {
 			video.src = window.webkitURL.createObjectURL(stream);
 			initialize();
 		}, webcamError);
@@ -116,9 +98,6 @@
 		$('#hotSpots').fadeIn();
 		$('body').addClass('black-background');
 		$(".instructions").delay(600).fadeIn();
-		$(canvasSource).delay(600).fadeIn();
-		$(canvasBlended).delay(600).fadeIn();
-		$('#canvas-highlights').delay(600).fadeIn();
 		$(window).trigger('start');
 		update();
 	}
