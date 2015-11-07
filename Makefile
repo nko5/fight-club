@@ -2,7 +2,7 @@ build:
 	./node_modules/.bin/browserify \
 		-d \
 	  ./client/index.js \
-	  -o ./public/js/bundle.js \
+	  -o ./public/bundle.js \
 	  -t babelify \
 	  --presets [ es2015 stage-0 ]
 
