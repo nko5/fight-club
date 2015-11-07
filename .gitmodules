@@ -1,0 +1,3 @@
+[submodule "public/js/js-motion-detection"]
+	path = public/js/js-motion-detection
+	url = git@github.com:nko5/kadira.git
