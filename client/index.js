@@ -4,31 +4,17 @@ import {getWebcam, showStream} from './util/webcam';
 
 const handlers = {};
 
-handlers['init'] = (client, msg) => {
-  client.id = msg.id;
-  client.peer = new Peer(client.id, {
-    host: location.hostname,
-    port: 8080,
-    path: '/peer',
-  });
-
-  client.peer.on('open', function () {
-    client.sendMsg({type: 'ready'});
-  });
-
-  client.peer.on('call', function(call) {
-    getWebcam().then((stream) => {
-      call.answer(stream);
-      call.on('stream', showStream);
-    });
-  });
+handlers['init'] = (msg) => {
+  const host = location.hostname;
+  const port = location.port;
+  const peer = new Peer(client.id, {host, port, path: '/peer'});
+  client = new Client(msg.id, peer, socket);
+  peer.once('open', () => client.sendReady());
+  peer.on('call', () => client.answerCall(call));
 };
 
 handlers['match'] = (client, msg) => {
-  getWebcam().then((stream) => {
-    var call = client.peer.call(msg.id, stream);
-    call.on('stream', showStream);
-  });
+  client.startMatch(msg.id);
 };
 
 let socket = engine(location.origin);
@@ -39,6 +25,6 @@ socket.on('message', data => {
   console.log('< msg:', msg);
 
   if (handlers[msg.type]) {
-    handlers[msg.type](client, msg);
+    handlers[msg.type](msg);
   }
 });
