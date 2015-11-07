@@ -16,7 +16,8 @@
     "babel-cli": "6.x.x",
     "babel-preset-es2015": "6.x.x",
     "babel-preset-stage-0": "^6.1.2",
-    "nodemon": "1.8.x"
+    "nodemon": "1.8.x",
+    "webpack": "1.12.x"
   },
   "dependencies": {
     "babel-core": "6.x.x",
