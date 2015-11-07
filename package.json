@@ -1,15 +1,28 @@
 {
-  "name": "nko2015-entry",
+  "name": "fight-club",
   "version": "0.0.1",
-  "description": "Our soon to be awesome entry for NKO2015. Let's make something amazing.",
+  "description": "Fight club node app made for NKO2015",
   "author": "Node Knockout Team <all@nodeknockout.com>",
-  "main": "./app.js",
-  "dependencies": {
-    "express": "4.x.x",
-    "peer": "0.2.x"
+  "options": {
+    "mocha": "--require scripts/mocha_runner server/**/__tests__/**/*.js"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "NODE_ENV=production ./start.sh",
+    "watch": "NODE_ENV=development ./watch.sh",
     "postinstall": "node scripts/postinstall.js"
+  },
+  "devDependencies": {
+    "babel": "6.x.x",
+    "babel-cli": "6.x.x",
+    "babel-preset-es2015": "6.x.x",
+    "babel-preset-stage-0": "^6.1.2",
+    "nodemon": "1.8.x"
+  },
+  "dependencies": {
+    "babel-core": "6.x.x",
+    "compression": "1.6.x",
+    "express": "4.x.x",
+    "isomorphic-fetch": "2.2.x",
+    "peer": "0.2.x"
   }
 }
