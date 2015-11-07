@@ -1,4 +1,7 @@
-(function () {
+export function startTracking(stream) {
+	var video = document.getElementById('webcam');
+	initialize();
+  video.src = URL.createObjectURL(stream);
 
 	// config start
 	var OUTLINES = true;
@@ -7,7 +10,6 @@
 	window.hotSpots = [];
 
 	var content = $('#content');
-	var video = $('#webcam')[0];
 	var canvases = $('canvas');
 
 	var resize = function () {
@@ -29,45 +31,11 @@
 	}
 	$(window).resize(resize);
 	$(window).ready(function () {
-		resize(); 
+		resize();
 	});
 
-	function hasGetUserMedia() {
-		// Note: Opera builds are unprefixed.
-		return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-			navigator.mozGetUserMedia || navigator.msGetUserMedia);
-	}
 
-	if (hasGetUserMedia()) {
-		$('.introduction').fadeIn();
-		$('.allow').fadeIn();
-	} else {
-		$('.browsers').fadeIn();
-		return;
-	}
 
-	var webcamError = function (e) {
-		alert('Webcam error!', e);
-	};
-
-	if (navigator.getUserMedia) {
-		navigator.getUserMedia({audio: false, video: true}, function (stream) {
-			video.src = stream;
-			initialize();
-		}, webcamError);
-	} else if (navigator.mozGetUserMedia) {
-		navigator.mozGetUserMedia({audio: false, video: true}, function (stream) {
-			video.mozSrcObject = stream;
-			initialize();
-		}, webcamError);
-	} else if (navigator.webkitGetUserMedia) {
-		navigator.webkitGetUserMedia({audio: false, video: true}, function (stream) {
-			video.src = window.webkitURL.createObjectURL(stream);
-			initialize();
-		}, webcamError);
-	} else {
-		//video.src = 'somevideo.webm'; // fallback.
-	}
 
 	var lastImageData;
 	var canvasSource = $("#canvas-source")[0];
@@ -83,9 +51,6 @@
 	var c = 5;
 
 	function initialize() {
-		$('.introduction').fadeOut();
-		$('.allow').fadeOut();
-		$('.loading').delay(300).fadeIn();
 		video.addEventListener('canplay', function canplayed() {
 			video.removeEventListener('canplay', canplayed);
 			// Video is only available until a short time.
@@ -94,10 +59,7 @@
 	}
 
 	function start() {
-		$('.loading').fadeOut();
 		$('#hotSpots').fadeIn();
-		$('body').addClass('black-background');
-		$(".instructions").delay(600).fadeIn();
 		$(window).trigger('start');
 		update();
 	}
@@ -205,7 +167,7 @@
 
 	function getCoords() {
 		$('#hotSpots').children().each(function (i, el) {
-			var ratio = $("#canvas-highlights").width() / $('video').width();
+			var ratio = $("#canvas-highlights").width() / $('#webcam').width();
 			hotSpots[i] = {
 				x:      this.offsetLeft / ratio,
 				y:      this.offsetTop / ratio,
@@ -229,4 +191,4 @@
 			ctx.strokeRect(o.x, o.y, o.width, o.height);
 		});
 	}
-})();
+}

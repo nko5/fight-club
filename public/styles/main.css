@@ -1,0 +1,78 @@
+body {
+	background: #FBFBF8;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	color: #333;
+}
+
+.black-background {
+	background-color: #000;
+	-webkit-transition: background-color 200ms ease 600ms;
+	-moz-transition: background-color 200ms ease 600ms;
+	-o-transition: background-color 200ms ease 600ms;
+	-ms-transition: background-color 200ms ease 600ms;
+	transition: background-color 200ms ease 600ms;
+}
+
+#container {
+
+}
+
+#md-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 480px;
+	overflow: hidden;
+	z-index: 0;
+}
+
+#canvas-source, #canvas-highlights {
+	display: inline;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/*#canvas-highlights {
+	height: 200px;
+	width: 40px;
+}*/
+
+#canvas-blended {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
+#hotSpots {
+	position: relative;
+	display: none;
+	height: 480px;
+	width: 640px;
+}
+
+#hotSpots > * {
+	position: absolute;
+	-moz-transition: all 80ms linear;
+	-webkit-transition: all 80ms linear;
+	transition: all 80ms linear;
+}
+
+/* Feel free to change this or turn it off altogether*/
+.active {
+	background: rgba(255, 255, 255, 0.7);
+	-moz-transition: all 150ms linear;
+	-webkit-transition: all 150ms linear;
+	transition: all 150ms linear;
+}
+
+/* Sample hotspots */
+.hotspot {
+	width: 10%;
+	height: 100%;
+}
