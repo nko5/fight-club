@@ -1,21 +1,17 @@
 let waiting = null;
 
-// TODO this is is only a temporary version
-// This cna go wrong sometimes so refresh.
-// I'll replace this with a better one in bg.
-export function HTTPMatcher(req, res) {
-  const peerId = req.query.peerId;
-  if (!peerId) {
-    res.end('ERROR');
-    return;
-  }
+export default {
+  remove(clientId) {
+    if (waiting === clientId) {
+      waiting = null;
+    }
+  },
 
-  if(!waiting) {
-    waiting = peerId;
-    res.end('WAIT');
-    return;
-  }
+  getWaiting() {
+    return waiting;
+  },
 
-  res.end(waiting);
-  waiting = null;
+  setWaiting(clientId) {
+    waiting = clientId;
+  },
 }
