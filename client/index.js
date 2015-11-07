@@ -27,6 +27,6 @@ const handlers = {
   },
 
   match(msg) {
-    client.callPeer(msg.id);
+    client.initialeCall(msg.id);
   }
 };
