@@ -11,14 +11,12 @@
     "watch": "make watch",
     "postinstall": "node scripts/postinstall.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-preset-es2015": "6.x.x",
     "babel-preset-stage-0": "6.x.x",
     "babelify": "7.x.x",
     "browserify": "12.x.x",
-    "nodemon": "1.x.x"
-  },
-  "dependencies": {
+    "nodemon": "1.x.x",
     "babel-core": "6.x.x",
     "engine.io": "1.5.x",
     "engine.io-client": "1.5.x",
