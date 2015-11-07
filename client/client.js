@@ -6,6 +6,15 @@ export default class Client {
     this.id = id;
     this.peerjs = peerjs;
     this.socket = socket;
+    this.stream = null;
+  }
+
+  setupStream() {
+    return getcam().then(stream => {
+      ui.setSelfStream(stream);
+      this.stream = stream;
+      return stream;
+    });
   }
 
   sendMsg(msg) {
@@ -23,17 +32,13 @@ export default class Client {
   }
 
   answerCall(call) {
-    return getcam()
-      .then(selfStream => ui.setSelfStream(selfStream))
-      .then(selfStream => this._answer(call, selfStream))
+    return this._answer(call, this.stream)
       .then(peerStream => ui.setPeerStream(peerStream))
       .then(() => ui.setMode('connected'));
   }
 
   initialeCall(id) {
-    return getcam()
-      .then(selfStream => ui.setSelfStream(selfStream))
-      .then(selfStream => this._call(id, selfStream))
+    return this._call(id, this.stream)
       .then(peerStream => ui.setPeerStream(peerStream))
       .then(() => ui.setMode('connected'));
   }
