@@ -2,11 +2,11 @@
 
 ~~~sh
 # getting the code
-git clone git@github.com:nko5/kadira.git && cd ./kadira/
+git clone https://github.com/nko5/kadira.git && cd ./kadira/
 
 # developing
 npm install
-npm start
+npm run watch
 
 # setup your modulus account
 npm install -g modulus
