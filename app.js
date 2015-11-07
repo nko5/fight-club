@@ -1,15 +1,10 @@
 var express = require('express');
+var peer = require('peer').ExpressPeerServer;
+var matcher = require('./server/matcher.js')
+
 var app = express();
+app.use(express.static('public'));
+app.use('/ready', matcher.handler);
 
-//Create a static file server
-app.configure(function() {
-  app.use(express.static(__dirname + '/public'));
-});
-
-app.listen(8080, function (err) {
-  if(err) {
-    throw err;
-  }
-
-  console.log('Express server started on port 8080');
-});
+var server = app.listen(8080);
+app.use('/peer', peer(server, {debug: true}));
