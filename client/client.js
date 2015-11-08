@@ -116,12 +116,12 @@ export default class Client {
   }
 
   checkDisconnect() {
-    // if (!this._complete) {
-    //   console.log('! log: opponent disconnected');
-    //   this.stopTracking();
-    //   ui.showWinMessage();
-    //   this.sendReady();
-    // }
+    if (!this._complete) {
+      console.log('! log: opponent disconnected');
+      this.stopTracking();
+      ui.showWinMessage();
+      this.sendReady();
+    }
   }
 
   _motion(act) {
