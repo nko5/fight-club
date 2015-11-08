@@ -23,7 +23,9 @@ jQuery(document).ready(function () {
     },
 
     match(msg) {
-      client.initiateFight(msg.id);
+      if (msg.id) {
+        client.initiateFight(msg.id);
+      }
     },
 
     time(msg) {
@@ -37,6 +39,10 @@ jQuery(document).ready(function () {
     result(msg) {
       if (msg.id === client.id) {
         ui.showWinMessage();
+      }
+
+      if (client.isCaller) {
+        client.sendSchedule();
       }
     },
   };

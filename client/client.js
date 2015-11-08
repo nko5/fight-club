@@ -7,10 +7,12 @@ const CHEAT_THRESHOLD = 3;
 export default class Client {
   constructor(id, socket) {
     this.id = id;
+    this.round = 1;
     this.socket = socket;
     this.peerjs = null;
     this.stream = null;
     this.motion = null;
+    this.isCaller = false;
 
     this._opponent = '';
     this._countActions = null;
@@ -83,6 +85,7 @@ export default class Client {
   }
 
   initiateFight(id) {
+    this.isCaller = true;
     this._opponent = id;
     return this._call(id, this.stream)
       .then(peerStream => ui.setPeerStream(peerStream))
@@ -128,6 +131,7 @@ export default class Client {
       extra = 1000;
     }
 
+    this._actionCount = 0;
     const startTime = Date.now();
     this._actionCallback = act => {
       console.log('act:', act);

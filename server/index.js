@@ -75,7 +75,7 @@ const handlers = {
       return;
     }
 
-    const opponentRestime = reswait[msg.opponent];
+    const opponentRestime = reswait[opponent.id];
     if (!opponentRestime) {
       reswait[client.id] = msg.millis;
       return;
@@ -85,8 +85,8 @@ const handlers = {
       client.sendResult(client.id);
       opponent.sendResult(client.id);
     } else {
-      client.sendResult(msg.opponent);
-      opponent.sendResult(msg.opponent);
+      client.sendResult(opponent.id);
+      opponent.sendResult(opponent.id);
     }
   },
 };
