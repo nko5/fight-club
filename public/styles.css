@@ -152,22 +152,20 @@ ol li a {
   width: 105px;
   right: 12px;
   top: 15px;
+  height: 25px;
+  border-radius: 3px;
+  background: #AAA;
 }
 
 .team-page {
   position: fixed;
-  width: 86px;
   right: 130px;
-  top: 15px;
-  font-family: 'fightthisregular';
-  letter-spacing: 1px;
-  display: block;
-  background: #bbb;
-  text-align: center;
-  padding: 2px 0;
-  text-decoration: none;
-  color: black;
+  top: 16px;
+}
+
+.team-page img {
   border-radius: 3px;
+  height: 24px;
 }
 
 .page {
