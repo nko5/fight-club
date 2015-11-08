@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../images/bg.png);
+
+	text-align: center;;
+	overflow: hidden;
+
+	/*background: #FBFBF8;*/
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+	color: #333;
+}
+
+h1 {
+  color: red;
+  font-size: 150px;
+}
+
+h2 {
+  font-size: 58px;
+  margin-bottom: 15px;
+}
+
+h2 img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+p {
+  margin: 10px 0;
+}
+
+ol li {
+  list-style: none;
+  margin: 15px;
+  font-size: 26px;
+}
+
+#gw > div {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.wrapper {
+  margin: auto;
+}
+
+.vote-us {
+  position: fixed;
+  width: 105px;
+  right: 12px;
+  top: 15px;
+}
+
+.page {
+  display: none;
+}
+
+.welcome {
+  margin: auto;
+  width: 840px;
+  display: block;
+  position: relative;
+  padding-top: 230px;
+}
+
+.rules {
+  width: 840px;
+  height: calc(100%);
+  margin: auto;
+  /* font-family: 'Yanone Kaffeesatz';*/
+  font-family: 'Architects Daughter', cursive;
+  color: white;
+  padding-top: 100px;
+  /* background-image: url(../images/bg_inner.png);*/
+}
+
+.arena {
+  margin: auto;
+  width: 840px;
+  height: 400px;
+  padding-top: 50px;
+  font-family: 'Architects Daughter', cursive;
+  color: white;
+  /*background-image: url(../images/bg_inner.png);*/
+}
+
+.arena h1 {
+  font-size: 90px;
+  margin-bottom: 20px;
+}
+
+.arena p {
+  font-size: 20px;
+}
+
+.video-pane video {
+  width: 420px;
+}
+
+.col-left {
+  float: left;
+}
+
+.col-right {
+  float: right;
+}
+
+.clr {clear: both;}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.tweet {
+  background-image: url(../images/tweet.png);
+  background-size: cover;
+  height: 27px;
+  position: absolute;
+  margin-top: 5px;
+  width: 75px;
+  outline: 0;
+  border: none;
+}
+
+span.tab {
+  margin-left: 83px;
+}
+
+/* Fight Club */
+
+.black-background {
+	background-color: #000;
+	-webkit-transition: background-color 200ms ease 600ms;
+	-moz-transition: background-color 200ms ease 600ms;
+	-o-transition: background-color 200ms ease 600ms;
+	-ms-transition: background-color 200ms ease 600ms;
+	transition: background-color 200ms ease 600ms;
+}
+
+#container {
+
+}
+
+#md-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 480px;
+	overflow: hidden;
+	z-index: 0;
+}
+
+#canvas-source, #canvas-highlights {
+	display: inline;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/*#canvas-highlights {
+	height: 200px;
+	width: 40px;
+}*/
+
+#canvas-blended {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
+#hotSpots {
+	position: relative;
+	display: none;
+	height: 480px;
+	width: 640px;
+}
+
+#hotSpots > * {
+	position: absolute;
+	-moz-transition: all 80ms linear;
+	-webkit-transition: all 80ms linear;
+	transition: all 80ms linear;
+}
+
+/* Feel free to change this or turn it off altogether*/
+.active {
+	background: rgba(255, 255, 255, 0.7);
+	-moz-transition: all 150ms linear;
+	-webkit-transition: all 150ms linear;
+	transition: all 150ms linear;
+}
+
+/* Sample hotspots */
+.hotspot {
+	width: 10%;
+	height: 100%;
+}
+
+#video-peer {
+  margin-top: 480px;
+}
+
+#video-self {
+  margin-left: 20px;
+  margin-top: -11px;
+}
+
+
+/* css button */
+
+a.btn {
+  position: relative;
+  color: rgba(255,255,255,1);
+  text-decoration: none;
+  background-color: rgba(219,87,5,1);
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: 700;
+  font-size: 3em;
+  display: inline-block;
+  padding: 4px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  margin: 30px 5px;
+  width: 160px;
+  text-align: center;
+  
+  -webkit-transition: all .1s ease;
+  -moz-transition: all .1s ease;
+  -ms-transition: all .1s ease;
+  -o-transition: all .1s ease;
+  transition: all .1s ease;
+}
+
+a.btn:active {
+    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
+}
