@@ -45,6 +45,9 @@
         <img src="images/logo.png" alt="Fight Club" />
         <div id="battlefield">
           <div id="self-container" class="video-container">
+            <div class="effects" width="400" height="300">
+              <img src="images/bang.png" id="self-bang" class="bang invisible" width="80">
+            </div>
             <video id="video-self" width="400" height="300"></video>
             <canvas id="canvas-source" style="display:none" width="400" height="300"></canvas>
             <canvas id="canvas-blended" style="display:none" width="400" height="300"></canvas>
@@ -57,6 +60,9 @@
             </div>
           </div>
           <div id="peer-container" class="video-container">
+            <div class="effects" width="400" height="300">
+              <img src="images/bang.png" id="peer-bang" class="bang invisible" width="80">
+            </div>
             <video id="video-peer" width="400" height="300"></video>
             <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
             <canvas id="webgl-self" width="400" height="300"></canvas>

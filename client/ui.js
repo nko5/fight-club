@@ -1,4 +1,5 @@
 import {playSound, stopSound, loopSound} from './util/sound'
+import {selfBang, peerBang} from './util/bang'
 
 var UIHelper = {
   userHealth: {
@@ -46,7 +47,18 @@ export default {
   showSelfAttack(type, millis, extra) {
     // if extra > 0, user has cheated
     // let him know and regret this
+    playSound('ouch');
     playSound(type);
+    let x, y;
+    if(type==='left'){
+      x=getRandomArbitrary(55, 70);
+      y=getRandomArbitrary(30, 70);
+    } else {
+      x=getRandomArbitrary(10, 30);
+      y=getRandomArbitrary(30, 70);
+    }
+
+    peerBang(x, y, 0);
     console.log('ATTACK:SELF!', type);
   },
 
@@ -58,7 +70,17 @@ export default {
   },
 
   showPeerAttack(type) {
-    playSound('ouch');
+    playSound(type);
+    let x, y;
+    if(type==='left'){
+      x=getRandomArbitrary(55, 70);
+      y=getRandomArbitrary(30, 70);
+    } else {
+      x=getRandomArbitrary(10, 30);
+      y=getRandomArbitrary(30, 70);
+    }
+
+    selfBang(x, y, 0);
     console.log('ATTACK:PEER!', type);
   },
 
@@ -85,6 +107,10 @@ export default {
     console.log('ROUND %d', round);
   }
 };
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 function updateHealthBars() {
   var selfHealth = UIHelper.userHealth.self;

@@ -154,6 +154,8 @@ ol li a {
   top: 290px;
   height: 10px;
   width: 400px;
+  background: #480A0A;
+  margin-top: 315px;
 }
 
 .health-bar {
@@ -262,4 +264,20 @@ a.btn:active, a.btn:hover {
   95% {opacity: .8; /*peak*/}
 	97% {opacity: 0.3;}
 	to {opacity: 0.3;}
+}
+
+/* Kaboom */
+
+.bang {
+  position: absolute;
+  display: none;
+  z-index: 5;
+}
+
+#self-bang {
+
+}
+
+#self-bang {
+
 }
