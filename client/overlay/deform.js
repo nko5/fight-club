@@ -84,25 +84,19 @@ const PLAYER_TO_ELEMENT = {
     webgl: "webgl-self"
   }
 }
-/* dont  function startFaceTracking */
-export function startFaceTracking(user) {
-  var videoInput  = document.getElementById(PLAYER_TO_ELEMENT[user].element);
-  videoInput.oncanplay = function(){
-    var ctrack = new clm.tracker();
-    ctrack.init(pModel);
-    ctrack.start(videoInput);
-
-    var canvasInput = document.getElementById(PLAYER_TO_ELEMENT[user].overlay);
-    var cc = canvasInput.getContext('2d');
-    function drawLoop() {
-      requestAnimationFrame(drawLoop);
-      console.log(canvasInput.width)
-      cc.clearRect(0, 0, canvasInput.width, canvasInput.height);
-      ctrack.draw(canvasInput);
-    }
-    drawLoop();
-  }
-}
+var presets = {
+	"unwell" : [0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	"inca" : [0, 0, -9, 0, -11, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0],
+	"cheery" : [0, 0, -9, 9, -11, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0],
+	"dopey" : [0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0],
+	"longface" : [0, 0, 0, 0, -15, 0, 0, -12, 0, 0, 0, 0, 0, 0, -7, 0, 0, 5],
+	"lucky" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -6, 12, 0, 0],
+	"overcute" : [0, 0, 0, 0, 16, 0, -14, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0],
+	"aloof" : [0, 0, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, -2, 0, 0, 10],
+	"evil" : [0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, -8],
+	"artificial" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, -16, 0, 0, 0, 0, 0],
+	"none" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+};
 
 export function deformFace(user, deformType = "unwell") {
   var vid  = document.getElementById(PLAYER_TO_ELEMENT[user].element);
@@ -115,20 +109,6 @@ export function deformFace(user, deformType = "unwell") {
   };
 
   var ph = new parameterHolder();
-
-  var presets = {
-  	"unwell" : [0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  	"inca" : [0, 0, -9, 0, -11, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0],
-  	"cheery" : [0, 0, -9, 9, -11, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0],
-  	"dopey" : [0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0],
-  	"longface" : [0, 0, 0, 0, -15, 0, 0, -12, 0, 0, 0, 0, 0, 0, -7, 0, 0, 5],
-  	"lucky" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -6, 12, 0, 0],
-  	"overcute" : [0, 0, 0, 0, 16, 0, -14, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0],
-  	"aloof" : [0, 0, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, -2, 0, 0, 10],
-  	"evil" : [0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, -8],
-  	"artificial" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, -16, 0, 0, 0, 0, 0],
-  	"none" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  };
 
   var animationRequest;
   var positions;
@@ -197,11 +177,11 @@ export function deformFace(user, deformType = "unwell") {
     // get position of face
 
     var parameters = ctrack.getCurrentParameters();
-    for (var i = 6;i < parameters.length;i++) {
-      parameters[i] += ph['component '+(i-3)];
-    }
     for (var i = 0;i < pnums;i++) {
       ph['component '+(i+3)] = presets[deformType][i];
+    }
+    for (var i = 6;i < parameters.length;i++) {
+      parameters[i] += ph['component '+(i-3)];
     }
 
     positions = ctrack.calculatePositions(parameters);
