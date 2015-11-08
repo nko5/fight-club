@@ -13,6 +13,7 @@ body {
   width: 800px;
   min-height: 300px;
   margin: 0 auto;
+  transform: scale(1.25);
 }
 
 .video-container {
@@ -38,23 +39,23 @@ body {
 }
 
 #peer-container {
-  display: none;
+  opacity: 0;
+  transform: translateX(200px);
+  transition: all 1s;
 }
 
 #self-container {
-  /*transform: scale(2) translateX(-100px) translateY(75px);*/
   transform: translateX(-200px);
+  transition: all 1s;
 }
 
 #battlefield.ready #peer-container {
-  display: block;
-  /*transform: scale(2) translateX(100px) translateY(75px);*/
+  opacity: 1;
+  transform: translateX(0);
 }
 
 #battlefield.ready #self-container {
-  /*transform: scale(0.4) translateX(280px) translateY(960px);*/
-  /*box-shadow: 3px 3px 3px #000;*/
-  transform: none;
+  transform: translateX(0);
 }
 
 h1, h2, a.btn {
