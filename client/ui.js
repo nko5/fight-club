@@ -57,8 +57,9 @@ export default {
       x=getRandomArbitrary(10, 30);
       y=getRandomArbitrary(30, 70);
     }
+    const kind = getRandomInt(0, 4)
 
-    peerBang(x, y, 0);
+    peerBang(x, y, kind);
     console.log('ATTACK:SELF!', type);
   },
 
@@ -80,7 +81,9 @@ export default {
       y=getRandomArbitrary(30, 70);
     }
 
-    selfBang(x, y, 0);
+    const kind = getRandomInt(0, 4)
+
+    selfBang(x, y, kind);
     console.log('ATTACK:PEER!', type);
   },
 
@@ -110,6 +113,10 @@ export default {
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function updateHealthBars() {
