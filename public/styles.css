@@ -307,10 +307,47 @@ a.btn:active, a.btn:hover {
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
+  -moz-animation-name: flicker;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
 }
 
 /* https://gist.github.com/oddlyzen/1229700 */
 @-webkit-keyframes flicker {
+	from {opacity: 0.3;}
+	4% {opacity: 0.3;}
+	6% {opacity: 0.25;}
+	8% {opacity: 0.35;}
+	10% {opacity: 0.25;}
+	11% {opacity: 0.3;}
+	12% {opacity: 0.85;}
+	14% {opacity: 0.35;}
+	16% {opacity: 0.90;}
+	17% {opacity: 0.35;}
+	19% {opacity: 0.3;}
+	20% {opacity: 0.3;}
+	24% {opacity: 0.3;}
+	26% {opacity: 0.89;}
+	28% {opacity: 0.3;}
+	38% {opacity: 0.05;}
+	40% {opacity: 0.3;}
+	42% {opacity: 0.8;}
+	44% {opacity: 0.3;}
+	46% {opacity: 0.3;}
+	56% {opacity: 0.3;}
+	58% {opacity: 0.95;}
+	60% {opacity: 0.3;}
+	68% {opacity: 0.3;}
+  70% {opacity: .8; /*peak*/}
+	72% {opacity: 0.3;}
+	93% {opacity: 0.3;}
+  95% {opacity: .8; /*peak*/}
+	97% {opacity: 0.3;}
+	to {opacity: 0.3;}
+}
+
+@keyframes flicker {
 	from {opacity: 0.3;}
 	4% {opacity: 0.3;}
 	6% {opacity: 0.25;}
