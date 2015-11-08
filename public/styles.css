@@ -10,7 +10,7 @@ body {
 }
 
 #battlefield {
-  width: 810px;
+  width: 800px;
   min-height: 300px;
   margin: 0 auto;
 }
@@ -165,15 +165,15 @@ ol li a {
 
 .health-bar-container {
   position: absolute;
-  top: 0;
-  height: 10px;
+  top: -5px;
+  height: 5px;
   width: 400px;
   background: #480A0A;
 }
 
 .health-bar {
   background: rgba(219,31,5,1);
-  height: 10px;
+  height: 5px;
 }
 
 .health-bar-container p {
