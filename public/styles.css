@@ -68,15 +68,21 @@ body {
 }
 
 #instructions {
-  width: 400px;
+  padding: 0 20px;
+  width: 360px;
   height: 300px;
   user-select: none;
   cursor:default;
-  font-family: 'fightthisregular';
   letter-spacing: 1px;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: skew(15deg);
+  text-align: left;
+  font-family: sans-serif;
+}
+
+#instructions p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 h1, h2, a.btn {
