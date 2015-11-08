@@ -84,7 +84,7 @@ const PLAYER_TO_ELEMENT = {
     webgl: "webgl-self"
   }
 }
-
+/* dont  function startFaceTracking */
 export function startFaceTracking(user) {
   var videoInput  = document.getElementById(PLAYER_TO_ELEMENT[user].element);
   videoInput.oncanplay = function(){
@@ -106,122 +106,114 @@ export function startFaceTracking(user) {
 
 export function deformFace(user, deformType = "unwell") {
   var vid  = document.getElementById(PLAYER_TO_ELEMENT[user].element);
+  var pnums = pModel.shapeModel.eigenValues.length-2;
+  var parameterHolder = function() {
+  	for (var i = 0;i < pnums;i++) {
+  		this['component '+(i+3)] = 0;
+  	}
+  	this.presets = 0;
+  };
 
-  vid.oncanplay = function(){
+  var ph = new parameterHolder();
 
-    var pnums = pModel.shapeModel.eigenValues.length-2;
-    var parameterHolder = function() {
-    	for (var i = 0;i < pnums;i++) {
-    		this['component '+(i+3)] = 0;
-    	}
-    	this.presets = 0;
-    };
+  var presets = {
+  	"unwell" : [0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  	"inca" : [0, 0, -9, 0, -11, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0],
+  	"cheery" : [0, 0, -9, 9, -11, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0],
+  	"dopey" : [0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0],
+  	"longface" : [0, 0, 0, 0, -15, 0, 0, -12, 0, 0, 0, 0, 0, 0, -7, 0, 0, 5],
+  	"lucky" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -6, 12, 0, 0],
+  	"overcute" : [0, 0, 0, 0, 16, 0, -14, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0],
+  	"aloof" : [0, 0, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, -2, 0, 0, 10],
+  	"evil" : [0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, -8],
+  	"artificial" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, -16, 0, 0, 0, 0, 0],
+  	"none" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  };
 
-    var ph = new parameterHolder();
+  var animationRequest;
+  var positions;
+  var ctrack = new clm.tracker();
 
-    var presets = {
-    	"unwell" : [0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    	"inca" : [0, 0, -9, 0, -11, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0],
-    	"cheery" : [0, 0, -9, 9, -11, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0],
-    	"dopey" : [0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0],
-    	"longface" : [0, 0, 0, 0, -15, 0, 0, -12, 0, 0, 0, 0, 0, 0, -7, 0, 0, 5],
-    	"lucky" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -6, 12, 0, 0],
-    	"overcute" : [0, 0, 0, 0, 16, 0, -14, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0],
-    	"aloof" : [0, 0, 0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, -2, 0, 0, 10],
-    	"evil" : [0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, -8],
-    	"artificial" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, -16, 0, 0, 0, 0, 0],
-    	"none" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    };
+  var overlay = document.getElementById(PLAYER_TO_ELEMENT[user].overlay);
+  overlay.style.visibility = "hidden";
+  var overlayCC = overlay.getContext('2d');
 
-    var animationRequest;
-    var positions;
-    var ctrack = new clm.tracker();
+  // canvas for copying videoframes to
+  var videocanvas = document.createElement('CANVAS');
+  videocanvas.width = vid.width;
+  videocanvas.height = vid.height;
 
-    var overlay = document.getElementById(PLAYER_TO_ELEMENT[user].overlay);
-    var overlayCC = overlay.getContext('2d');
+  var fd = new faceDeformer();
+  var webglEl = document.getElementById(PLAYER_TO_ELEMENT[user].webgl);
+  fd.init(webglEl);
+  var wc1 = webglEl.getContext('webgl') || webglEl.getContext('experimental-webgl')
+  wc1.clearColor(0,0,0,0);
 
-    var newcanvas = document.createElement('CANVAS');
-    newcanvas.width = vid.width;
-    newcanvas.height = vid.height;
-    // canvas for copying videoframes to
-    var videocanvas = document.createElement('CANVAS');
-    videocanvas.width = vid.width;
-    videocanvas.height = vid.height;
+  ctrack.init(pModel);
+  ctrack.start(vid);
 
-    var fd = new faceDeformer();
-    var webglEl = document.getElementById(PLAYER_TO_ELEMENT[user].webgl);
-    fd.init(webglEl);
-    var wc1 = webglEl.getContext('webgl') || webglEl.getContext('experimental-webgl')
-    wc1.clearColor(0,0,0,0);
+  drawGridLoop();
+  function drawGridLoop() {
+    // get position of face
+    positions = ctrack.getCurrentPosition(vid);
 
-    ctrack.init(pModel);
-    ctrack.start(vid);
-    drawGridLoop();
-    function drawGridLoop() {
-      // get position of face
-      positions = ctrack.getCurrentPosition(vid);
+    overlayCC.clearRect(0, 0, vid.width, vid.height);
+    if (positions) {
+      // draw current grid
+      ctrack.draw(overlay);
+    }
+    // check whether mask has converged
+    var pn = ctrack.getConvergence();
+    if (pn < 0.4) {
+      drawMaskLoop();
+    } else {
+      requestAnimFrame(drawGridLoop);
+    }
+  }
 
-      overlayCC.clearRect(0, 0, vid.width, vid.height);
-      if (positions) {
-        // draw current grid
-        ctrack.draw(overlay);
-      }
-      // check whether mask has converged
-      var pn = ctrack.getConvergence();
-      if (pn < 0.4) {
-        drawMaskLoop();
-      } else {
-        requestAnimFrame(drawGridLoop);
-      }
+  function drawMaskLoop() {
+    videocanvas.getContext('2d').drawImage(vid,0,0,videocanvas.width,videocanvas.height);
+
+    var pos = ctrack.getCurrentPosition(vid);
+    // create additional points around face
+    var tempPos;
+    var addPos = [];
+    for (var i = 0;i < 23;i++) {
+      tempPos = [];
+      var item = pos[i] || [];
+      var item62 = pos[62] || [];
+      tempPos[0] = (item[0] - item62[0])*1.3 + item62[0];
+      tempPos[1] = (item[1] - item62[1])*1.3 + item62[1];
+      addPos.push(tempPos);
+    }
+    // merge with pos
+    var newPos = pos.concat(addPos);
+
+    var newVertices = pModel.path.vertices.concat(mouth_vertices);
+    // merge with newVertices
+    newVertices = newVertices.concat(extendVertices);
+
+    fd.load(videocanvas, newPos, pModel, newVertices);
+    // get position of face
+
+    var parameters = ctrack.getCurrentParameters();
+    for (var i = 6;i < parameters.length;i++) {
+      parameters[i] += ph['component '+(i-3)];
+    }
+    for (var i = 0;i < pnums;i++) {
+      ph['component '+(i+3)] = presets[deformType][i];
     }
 
-    function drawMaskLoop() {
-      videocanvas.getContext('2d').drawImage(vid,0,0,videocanvas.width,videocanvas.height);
+    positions = ctrack.calculatePositions(parameters);
 
-      var pos = ctrack.getCurrentPosition(vid);
-      // create additional points around face
-      var tempPos;
-      var addPos = [];
-      for (var i = 0;i < 23;i++) {
-        tempPos = [];
-        var item = pos[i] || [];
-        var item62 = pos[62] || [];
-        tempPos[0] = (item[0] - item62[0])*1.3 + item62[0];
-        tempPos[1] = (item[1] - item62[1])*1.3 + item62[1];
-        addPos.push(tempPos);
-      }
-      // merge with pos
-      var newPos = pos.concat(addPos);
-
-      var newVertices = pModel.path.vertices.concat(mouth_vertices);
-      // merge with newVertices
-      newVertices = newVertices.concat(extendVertices);
-
-      fd.load(videocanvas, newPos, pModel, newVertices);
-      // get position of face
-
-      // for (var i = 0;i < pnums;i++) {
-      //   ph['component '+(i+3)] = presets['unwell'][i];
-      // }
-      var parameters = ctrack.getCurrentParameters();
-      for (var i = 6;i < parameters.length;i++) {
-        parameters[i] += ph['component '+(i-3)];
-      }
-      for (var i = 0;i < pnums;i++) {
-        ph['component '+(i+3)] = presets[deformType][i];
-      }
-
-      positions = ctrack.calculatePositions(parameters);
-
-      overlayCC.clearRect(0, 0, videocanvas.width,videocanvas.height);
-      if (positions) {
-        // add positions from extended boundary, unmodified
-        newPos = positions.concat(addPos);
-        // draw mask on top of face
-        fd.draw(newPos);
-      }
-      animationRequest = requestAnimFrame(drawMaskLoop);
+    overlayCC.clearRect(0, 0, videocanvas.width,videocanvas.height);
+    if (positions) {
+      // add positions from extended boundary, unmodified
+      newPos = positions.concat(addPos);
+      // draw mask on top of face
+      fd.draw(newPos);
     }
+    animationRequest = requestAnimFrame(drawMaskLoop);
   }
 }
 

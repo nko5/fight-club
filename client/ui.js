@@ -1,5 +1,6 @@
 import {playSound, stopSound, loopSound} from './util/sound'
 import {selfBang, peerBang} from './util/bang'
+import {deformFace} from './overlay/deform'
 
 var UIHelper = {
   userHealth: {
@@ -62,6 +63,7 @@ export default {
 
     peerBang(x, y, kind);
     console.log('ATTACK:SELF!', type);
+    deformFace("peer");
   },
 
   setSelfAttackCount(n) {
