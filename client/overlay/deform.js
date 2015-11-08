@@ -195,7 +195,7 @@ export function initDeformFace(user) {
       tempPos[1] = (item[1] - item62[1])*1.3 + item62[1];
       addPos.push(tempPos);
     }
-    if(typeof pos.concat !== "function" || !stopLoopHolder[user]){
+    if(typeof pos.concat !== "function"){
       animationRequest = requestAnimFrame(drawMaskLoop);
       return;
     }
