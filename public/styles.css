@@ -73,11 +73,25 @@ p {
 
 ol li {
   margin: 15px;
-  font-size: 26px;
+  font-size: 22px;
   list-style: none;
   transition: all 0.1s;
   user-select: none;
-  cursor:default
+  cursor:default;
+  font-family: 'fightthisregular';
+  letter-spacing: 1px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: skew(15deg);
+}
+
+ol:hover li {
+  opacity: 0.2;
+}
+
+ol:hover li:hover {
+  transform: scale(2) skew(15deg);
+  opacity: 1;
 }
 
 ol li a {
@@ -102,7 +116,7 @@ ol li a {
   display: block;
   position: relative;
   text-align: center;
-  padding-top: 180px;
+  padding-top: 120px;
 }
 
 .welcome img {
@@ -116,7 +130,7 @@ ol li a {
   text-align: center;
   font-family: 'Architects Daughter', cursive;
   color: white;
-  padding-top: 180px;
+  padding-top: 120px;
 }
 
 .arena {
@@ -151,7 +165,7 @@ ol li a {
 
 .health-bar-container {
   position: absolute;
-  top: 290px;
+  top: 0;
   height: 10px;
   width: 400px;
   background: #480A0A;
