@@ -247,6 +247,15 @@ ol li a {
   clear: both;
 }
 
+#img-win, #img-lose {
+  display: none;
+  width: 500px;
+  left: calc(50% - 244px);
+  position: fixed;
+  z-index: 10;
+  top: 305px;
+}
+
 button {
   padding: 5px 10px;
   cursor: pointer;
