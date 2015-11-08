@@ -37,12 +37,20 @@ export default {
     // if extra > 0, user has cheated
     // let him know and regret this
     playSound(type);
-    console.log('ATTACK:PEER!', type);
+    console.log('ATTACK:SELF!', type);
+  },
+
+  setSelfAttackCount(n) {
+    console.log('ATTACK:COUNT:SELF!', n);
   },
 
   showPeerAttack(type) {
     playSound('ouch');
-    console.log('ATTACK:SELF!', type);
+    console.log('ATTACK:PEER!', type);
+  },
+
+  setPeerAttackCount(n) {
+    console.log('ATTACK:COUNT:PEER!', n);
   },
 
   showWinMessage() {

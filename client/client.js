@@ -99,9 +99,7 @@ export default class Client {
     }
 
     if(this._actionCallback) {
-      const callback = this._actionCallback;
-      this._actionCallback = null;
-      callback(act);
+      this._actionCallback(act);
     }
   }
 
@@ -124,21 +122,27 @@ export default class Client {
     ui.showAttackBell();
     let extra = 0;
 
-    this._countActions = false;
-    console.log('this._actionCount:', this._actionCount);
+    // this._countActions = false;
     if (this._actionCount > CHEAT_THRESHOLD) {
       console.log('! log: cheat detected');
-      extra = 1000;
+      extra = 3000;
     }
 
     this._actionCount = 0;
     const startTime = Date.now();
     this._actionCallback = act => {
-      console.log('act:', act);
+      ui.showSelfAttack(act, millis, extra);
+      ui.setSelfAttackCount(this._actionCount);
+      console.log('! hit:', act, this._actionCount);
+
+      if (this._actionCount < 10) {
+        return;
+      }
+
+      this._actionCount = 0;
       this._actionCallback = null;
       this.motion.stop();
       const millis = Date.now() - startTime;
-      ui.showSelfAttack(act, millis, extra);
       this.sendRestime(millis + extra);
     };
   }
