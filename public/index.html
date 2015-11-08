@@ -35,6 +35,7 @@
       </div>
 
       <div class="page arena">
+        <h1>FIGHT CLUB</h1>
         <div id="battlefield">
           <div id="self-container" class="video-container">
             <video id="video-self" width="400" height="300"></video>
@@ -42,11 +43,21 @@
             <canvas id="canvas-blended" style="display:none" width="400" height="300"></canvas>
             <canvas id="canvas-overlay-self" width="400" height="300"></canvas>
             <canvas id="webgl-self" width="400" height="300"></canvas>
+
+            <div class="health-bar-container">
+              <div class="health-bar" style="width: 390px;"></div>
+              <p>Health (80%)</p>
+            </div>
           </div>
           <div id="peer-container" class="video-container">
             <video id="video-peer" width="400" height="300"></video>
             <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
             <canvas id="webgl-self" width="400" height="300"></canvas>
+
+            <div class="health-bar-container">
+              <div class="health-bar" style="width: 90px;"></div>
+              <p>Health (30%)</p>
+            </div>
           </div>
         </div>
       </div>
