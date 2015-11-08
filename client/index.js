@@ -38,6 +38,12 @@ window.startGame = function () {
 
     damage(msg) {
       client.updateDamage(msg.act, msg.count);
+
+      if (msg.count === 10) {
+        client.stopTracking();
+        ui.showLoseMessage();
+        this.sendRestime(1e9);
+      }
     },
 
     result(msg) {
