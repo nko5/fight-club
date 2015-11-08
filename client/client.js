@@ -85,6 +85,13 @@ export default class Client {
     }
   }
 
+  stopTracking() {
+    this._actionCount = 0;
+    this._countActions = false;
+    this._actionCallback = null;
+    this.motion.stop();
+  }
+
   answerCall(call) {
     return this._answer(call, this.stream)
       .then(peerStream => ui.setPeerStream(peerStream))
