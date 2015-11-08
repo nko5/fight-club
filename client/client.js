@@ -14,7 +14,8 @@ export default class Client {
     this.motion = null;
     this.isCaller = false;
 
-    this._opponent = '';
+    this._opponent = null;
+    this._mediaConn = null;
     this._countActions = null;
     this._actionCount = 0;
     this._actionCallback = null;
@@ -29,6 +30,7 @@ export default class Client {
         return stream;
       })
       .then(() => {
+        console.log('! log: starting new game');
         this.peerjs = new Peer(this.id, {
           host: location.hostname,
           port: location.port,
@@ -53,6 +55,7 @@ export default class Client {
   }
 
   sendReady() {
+    this._opponent = null;
     this.sendMsg({type: 'ready'});
     ui.setMode('waiting');
   }
@@ -99,13 +102,16 @@ export default class Client {
     }
 
     if(this._actionCallback) {
-      const callback = this._actionCallback;
-      this._actionCallback = null;
-      callback(act);
+      this._actionCallback(act);
     }
   }
 
   _answer(call, stream) {
+    if (this._mediaConn) {
+      this._mediaConn.close();
+    }
+
+    this._mediaConn = call;
     this._opponent = call.peer;
     return new Promise((resolve, reject) => {
       call.answer(stream);
@@ -116,6 +122,11 @@ export default class Client {
   _call(id, stream) {
     return new Promise((resolve, reject) => {
       var call = this.peerjs.call(id, stream);
+      if (this._mediaConn) {
+        this._mediaConn.close();
+      }
+
+      this._mediaConn = call;
       call.once('stream', resolve);
     });
   }
@@ -124,21 +135,27 @@ export default class Client {
     ui.showAttackBell();
     let extra = 0;
 
-    this._countActions = false;
-    console.log('this._actionCount:', this._actionCount);
+    // this._countActions = false;
     if (this._actionCount > CHEAT_THRESHOLD) {
       console.log('! log: cheat detected');
-      extra = 1000;
+      extra = 3000;
     }
 
     this._actionCount = 0;
     const startTime = Date.now();
     this._actionCallback = act => {
-      console.log('act:', act);
+      ui.showSelfAttack(act, millis, extra);
+      ui.setSelfAttackCount(this._actionCount);
+      console.log('! hit:', act, this._actionCount);
+
+      if (this._actionCount < 10) {
+        return;
+      }
+
+      this._actionCount = 0;
       this._actionCallback = null;
       this.motion.stop();
       const millis = Date.now() - startTime;
-      ui.showSelfAttack(act, millis, extra);
       this.sendRestime(millis + extra);
     };
   }
