@@ -76,11 +76,12 @@ export default class Client {
   trackRestime(ts) {
     this.motion.start();
     var now = Date.now();
+    this._countActions = true;
+
     if (now > ts) {
       console.log('! log: way past attack time');
       this._track();
     } else {
-      this._countActions = true;
       console.log('! log: attack after %d ms', ts - now);
       setTimeout(() => this._track(), ts - now);
     }
