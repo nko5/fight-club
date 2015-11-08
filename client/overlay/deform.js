@@ -135,7 +135,7 @@ export function initDeformFace(user) {
   var ctrack = new clm.tracker();
 
   var overlay = document.getElementById(PLAYER_TO_ELEMENT[user].overlay);
-  // overlay.style.visibility = "hidden";
+  overlay.style.visibility = "hidden";
   var overlayCC = overlay.getContext('2d');
 
   // canvas for copying videoframes to
