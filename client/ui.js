@@ -102,12 +102,24 @@ export default {
   },
 
   showWinMessage() {
+    $('#img-win').fadeIn(function(){
+      setTimeout(function(){
+        $('#img-win').fadeOut();
+      }, 1000);
+    });
+
     stopSound('crowd');
     playSound('win');
     console.log('WIN!');
   },
 
   showLoseMessage() {
+    $('#img-lose').fadeIn(function(){
+      setTimeout(function(){
+        $('#img-lose').fadeOut();
+      }, 1000);
+    });
+
     stopSound('crowd');
     playSound('lose');
     console.log('LOSE!');

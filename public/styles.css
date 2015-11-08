@@ -249,6 +249,11 @@ ol li a {
   clear: both;
 }
 
+#img-win, #img-lose {
+  display: none;
+  position: fixed;
+}
+
 button {
   padding: 5px 10px;
   cursor: pointer;
