@@ -11,8 +11,19 @@ $(".show-rules").click(function() {
 });
 
 $(".fight-now").click(function() {
+  var index = Math.floor((Math.random() * 7) + 1);
+  var userName = fighters[index] + "_" + generateId();
+
   gameConfig.pos = "arena";
   renderUI();
+
+  userName = prompt("Please enter your name", userName);
+
+  if(userName) {
+    gameConfig.user = userName;
+    $(".user-name").val(gameConfig.user) && $(".user-name").text(gameConfig.user);
+  }
+  
 });
 
 $(".back-home").click(function() {

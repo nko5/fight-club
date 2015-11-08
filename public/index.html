@@ -6,7 +6,6 @@
     <script type="text/javascript" src="vendor/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/cufon-yui.js"></script>
     <script type="text/javascript" src="js/FightThis_400.font.js"></script>
-    <script type="text/javascript" src="js/Wrong_place_right_time_400.font.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
@@ -18,12 +17,12 @@
 
       <div class="page welcome">
         <h1>FIGHT CLUB</h1>
-        <a class="btn" style="opacity: 0.4;" href="javascript:void(0);">COMING SOON!</a>
+        <a class="btn fight-now" href="javascript:void(0);">FIGHT NOW</a>
         <a class="btn show-rules" href="javascript:void(0);">RULES</a>
       </div>
 
-      <div class="page rules center">
-        <h2>RULES</h2>
+      <div class="page rules">
+        <h2>THE EIGHT RULES OF FIGHT CLUB</h2>
         <ol>
           <li>You talk about FIGHT CLUB.<li>
           <li>You MUST talk about FIGHT CLUB. <br/>You also <button class="tweet"></button> <span class="tab"></span>about it.<li>
@@ -31,7 +30,7 @@
           <li>Only two guys to a fight.<li>
           <li>Much much more than one fight at a time.</li>
           <li>Shirts mandatory, Shoes optional.</li>
-          <li>Fights will not go on as long as they have to.</li>
+          <li>Fights will go on as long as they have to.</li>
           <li>If this is your first time at FIGHT CLUB, <br/>you HAVE to fight. If not, you still have to fight</li>
         </ol>
 
@@ -39,24 +38,26 @@
       </div>
 
       <div class="page arena">
-        <div class="self">
+        <h1>FIGHT CLUB</h1>
+
+        <div class="self col-left">
           <div class="video-pane">
-            <video width="320" height="240" controls>
+            <video width="420" height="300" controls>
               <source src="http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_2mb.mp4" type="video/mp4">
             </video> 
           </div>
           <div class="user-data">
-            ----
+            <p>You: <span class="user-name"></span></p>
           </div>
         </div>
-        <div class="opponent">
+        <div class="opponent col-right">
           <div class="video-pane">
-            <video width="320" height="240" controls>
+            <video width="420" height="300" controls>
               <source src="http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_2mb.mp4" type="video/mp4">
             </video> 
           </div>
           <div class="user-data">
-            ---
+            <p>Your Opponent: <span class="opponent-name">Unknown</span></p>
           </div>
         </div>
         <div class="clr"></div>
@@ -71,7 +72,6 @@
     <script type="text/javascript">
       Cufon.replace('h1', { fontFamily: 'FightThis' });
       Cufon.replace('h2', { fontFamily: 'FightThis' });
-      Cufon.replace('li', { fontFamily: 'Wrong place, right time' });
     </script>
 
     <script type="text/javascript" src="bundle.js"></script>

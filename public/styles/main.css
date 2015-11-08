@@ -86,29 +86,38 @@ ol li {
   /* background-image: url(../images/bg_inner.png);*/
 }
 
-.center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  
-  /*
-  Nope =(
-  margin-left: -25%;
-  margin-top: -25%;
-  */
-
-  /* 
-  Yep!
-  */
-  transform: translate(-50%, -50%);
-  
-  /*
-  Not even necessary really. 
-  e.g. Height could be left out!
-  */
-  width: 40%;
-  height: 50%;
+.arena {
+  margin: auto;
+  width: 840px;
+  height: 400px;
+  padding-top: 50px;
+  font-family: 'Architects Daughter', cursive;
+  color: white;
+  /*background-image: url(../images/bg_inner.png);*/
 }
+
+.arena h1 {
+  font-size: 90px;
+  margin-bottom: 20px;
+}
+
+.arena p {
+  font-size: 20px;
+}
+
+.video-pane video {
+  width: 420px;
+}
+
+.col-left {
+  float: left;
+}
+
+.col-right {
+  float: right;
+}
+
+.clr {clear: both;}
 
 button {
   padding: 5px 10px;
