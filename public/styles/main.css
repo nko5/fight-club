@@ -4,10 +4,12 @@
 }
 
 body {
+  background-image: url(../images/bg.png);
+
 	text-align: center;;
 	overflow: hidden;
 
-	background: #FBFBF8;
+	/*background: #FBFBF8;*/
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
 	padding: 0;
@@ -15,9 +17,14 @@ body {
 	color: #333;
 }
 
+h1 {
+  color: red;
+  font-size: 150px;
+}
+
 h2 {
-  font-family: "Merriweather", "Roboto", sans-serif;
-  margin-top: 15px;
+  font-size: 58px;
+  margin-bottom: 15px;
 }
 
 h2 img {
@@ -29,6 +36,12 @@ h2 img {
 
 p {
   margin: 10px 0;
+}
+
+ol li {
+  list-style: none;
+  margin: 15px;
+  font-size: 26px;
 }
 
 #gw > div {
@@ -43,19 +56,52 @@ p {
   margin: auto;
 }
 
+.vote-us {
+  position: fixed;
+  width: 105px;
+  right: 12px;
+  top: 15px;
+}
+
 .page {
   display: none;
 }
 
 .welcome {
   margin: auto;
-  width: 600px;
+  width: 840px;
   display: block;
+  position: relative;
+  padding-top: 230px;
+}
+
+.rules {
+  width: 840px;
+  height: calc(100%);
+  margin: auto;
+  font-family: 'Yanone Kaffeesatz';
+  color: white;
+  padding-top: 150px;
+  background-image: url(../images/bg_inner.png);
 }
 
 button {
   padding: 5px 10px;
   cursor: pointer;
+}
+
+button.tweet {
+  background-image: url(../images/tweet.png);
+  background-size: cover;
+  height: 27px;
+  position: absolute;
+  margin-top: 5px;
+  width: 70px;
+  outline: 0;
+}
+
+span.tab {
+  margin-left: 76px;
 }
 
 /* Fight Club */
@@ -137,4 +183,42 @@ button {
 #video-self {
   margin-left: 20px;
   margin-top: -11px;
+}
+
+
+/* css button */
+
+a.btn {
+  position: relative;
+  color: rgba(255,255,255,1);
+  text-decoration: none;
+  background-color: rgba(219,87,5,1);
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: 700;
+  font-size: 3em;
+  display: inline-block;
+  padding: 4px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  margin: 30px 5px;
+  width: 160px;
+  text-align: center;
+  
+  -webkit-transition: all .1s ease;
+  -moz-transition: all .1s ease;
+  -ms-transition: all .1s ease;
+  -o-transition: all .1s ease;
+  transition: all .1s ease;
+}
+
+a.btn:active {
+    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
 }

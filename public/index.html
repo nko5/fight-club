@@ -4,54 +4,73 @@
   <head>
     <script type="text/javascript" src="vendor/peer.min.js"></script>
     <script type="text/javascript" src="vendor/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/cufon-yui.js"></script>
+    <script type="text/javascript" src="js/FightThis_400.font.js"></script>
+    <script type="text/javascript" src="js/Wrong_place_right_time_400.font.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+
     <link rel='stylesheet' type='text/css' href='styles/main.css'>
   </head>
   <body>
     <div class="wrapper">
+
       <div class="page welcome">
-        <h2>
-          <img src="https://pbs.twimg.com/profile_images/623570379437510656/b0gi4XDH_400x400.png" />
-          Welcome to the Fight Club!
-        </h2>
-
-        <p>Here's the instruction:</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras congue accumsan neque ac bibendum. Praesent faucibus elit eu eleifend consectetur. Nulla et nibh interdum, sodales nisl vitae, congue ex. Cras luctus commodo interdum. Donec condimentum vulputate rhoncus. Ut nec maximus arcu. Nulla vestibulum bibendum ex, fringilla consequat tellus volutpat ac. Maecenas mattis ultricies augue vel consequat. Praesent nec sollicitudin mauris, et pharetra massa. Quisque tellus libero, venenatis eget feugiat ac, vehicula ut turpis. Vestibulum accumsan magna sit amet magna molestie tristique. Aliquam porta suscipit metus id viverra.</p>
-
-        <div class="profile">
-          <p>Fighter Name: <br/><input type="text" class="user-name" value=""></p>
-        </div>
-
-        <button class="start">START</button>
+        <h1>FIGHT CLUB</h1>
+        <a class="btn" href="javascript:void(0);">FIGHT NOW!</a>
+        <a class="btn show-rules" href="javascript:void(0);">RULES</a>
       </div>
 
-      <div class="page calibrate">
-        <h2>Calibrate the Webcam</h2>
+      <div class="page rules">
+        <h2>RULES</h2>
+        <ol>
+          <li>You talk about FIGHT CLUB.<li>
+          <li>You MUST talk about FIGHT CLUB. You also <button class="tweet"></button> <span class="tab"></span>about it.<li>
+          <li>If someone clicks "stop" or disconnects, the fight is over.<li>
+          <li>Only two guys to a fight.<li>
+          <li>Much much more than one fight at a time.</li>
+          <li>Shirts mandatory, Shoes optional.</li>
+          <li>Fights will not go on as long as they have to.</li>
+          <li>If this is your first time at FIGHT CLUB, you HAVE to fight. If not, you still have to fight</li>
+        </ol>
 
-        <p class="user-name"></p>
-
-        <button class="continue">Continue</button>
-        <button class="continue">Skip</button>
+        <a class="btn back-home" href="javascript:void(0);">BACK</a>
       </div>
 
-      <div class="page fight-area">
-        <p>Fight Area</p>
-
-        <video id="video-peer"></video>
-
-        <div id="md-container">
-          <video id="video-self" autoplay width="250px" height="250px"></video>
-          <canvas id="canvas-source" width="640" height="480"></canvas>
-          <canvas id="canvas-highlights" width="640" height="480"></canvas>
-          <canvas id="canvas-blended" width="640" height="480"></canvas>
-          <div id="hotSpots" width="640" height="480">
-            <div id="top-left" class="hotspot"></div>
-            <div id="top-right" class="hotspot" style="right: 0%;"></div>
+      <div class="page arena">
+        <div class="self">
+          <div class="video-pane">
+            <video width="320" height="240" controls>
+              <source src="http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_2mb.mp4" type="video/mp4">
+            </video> 
+          </div>
+          <div class="user-data">
+            ----
           </div>
         </div>
-
-        <p class="user-name"></p>
+        <div class="opponent">
+          <div class="video-pane">
+            <video width="320" height="240" controls>
+              <source src="http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_2mb.mp4" type="video/mp4">
+            </video> 
+          </div>
+          <div class="user-data">
+            ---
+          </div>
+        </div>
+        <div class="clr"></div>
       </div>
+
+      <div class="vote-us">
+        <iframe src="http://nodeknockout.com/iframe/kadira" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>
+      </div>
+
     </div>
+
+    <script type="text/javascript">
+      Cufon.replace('h1', { fontFamily: 'FightThis' });
+      Cufon.replace('li', { fontFamily: 'Wrong place, right time' });
+    </script>
 
     <script type="text/javascript" src="bundle.js"></script>
     <script type="text/javascript" src="js/game.js"></script>

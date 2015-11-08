@@ -7,6 +7,7 @@ import Client from './client';
 
 const app = express();
 const staticPath = path.resolve(__dirname, '../public');
+
 app.use(express.static(staticPath));
 
 const http = app.listen(8080, err => {
