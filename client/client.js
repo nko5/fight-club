@@ -81,7 +81,7 @@ export default class Client {
   answerCall(call) {
     return this._answer(call, this.stream)
       .then(peerStream => ui.setPeerStream(peerStream))
-      .then(() => ui.setMode('connected'));
+      .then(() => ui.showConnected());
   }
 
   initiateFight(id) {
@@ -89,7 +89,7 @@ export default class Client {
     this._opponent = id;
     return this._call(id, this.stream)
       .then(peerStream => ui.setPeerStream(peerStream))
-      .then(() => ui.setMode('connected'))
+      .then(() => ui.showConnected())
       .then(() => this.sendSchedule());
   }
 

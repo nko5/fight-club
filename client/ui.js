@@ -1,3 +1,5 @@
+import {playSound, stopSound, loopSound} from './util/sound'
+
 export default {
   setMode(mode) {
     console.log('mode:', mode);
@@ -22,25 +24,40 @@ export default {
     });
   },
 
+  showConnected() {
+    loopSound('crowd')
+  },
+
   showAttackBell() {
+    playSound('bell');
     console.log('BELL!!');
   },
 
   showSelfAttack(type, millis, extra) {
     // if extra > 0, user has cheated
     // let him know and regret this
+    playSound(type);
     console.log('ATTACK:PEER!', type);
   },
 
   showPeerAttack(type) {
+    playSound('ouch');
     console.log('ATTACK:SELF!', type);
   },
 
   showWinMessage() {
+    stopSound('crowd');
+    playSound('win');
     console.log('WIN!');
+  },
+
+  showLoseMessage() {
+    stopSound('crowd');
+    playSound('lose');
+    console.log('LOSE!');
   },
 
   showNextRound(round) {
     console.log('ROUND %d', round);
-  },
+  }
 };

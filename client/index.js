@@ -39,6 +39,8 @@ window.startGame = function () {
     result(msg) {
       if (msg.id === client.id) {
         ui.showWinMessage();
+      } else {
+        ui.showLoseMessage();
       }
 
       if (client.isCaller) {
