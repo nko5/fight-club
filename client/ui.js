@@ -1,5 +1,6 @@
 import {playSound, stopSound, loopSound} from './util/sound'
 import {selfBang, peerBang} from './util/bang'
+import {deformFace, initDeformFace} from './overlay/deform'
 
 var UIHelper = {
   userHealth: {
@@ -18,6 +19,8 @@ export default {
   },
 
   setPeerStream(stream) {
+    initDeformFace("peer");
+    initDeformFace("self");
     return this.setStream('video-peer', stream);
   },
 
@@ -68,6 +71,7 @@ export default {
     var health = ((10 - n)/10)*100;
     UIHelper.userHealth.peer = health;
     updateHealthBars();
+    deformFace("peer", "unwell", n);
     console.log('ATTACK:COUNT:SELF!', n);
   },
 
@@ -86,12 +90,14 @@ export default {
 
     selfBang(x, y, kind);
     console.log('ATTACK:PEER!', type);
+    deformFace("self");
   },
 
   setPeerAttackCount(n) {
     var health = ((10 - n)/10)*100;
     UIHelper.userHealth.self = health;
     updateHealthBars();
+    deformFace("self", "unwell", n);
     console.log('ATTACK:COUNT:PEER!', n);
   },
 
