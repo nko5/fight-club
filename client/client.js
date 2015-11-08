@@ -68,6 +68,10 @@ export default class Client {
     this.sendMsg({type: 'restime', opponent: this._opponent, millis});
   }
 
+  sendAttackCount(act, count) {
+    this.sendMsg({type: 'attack', opponent: this._opponent, act, count});
+  }
+
   trackRestime(ts) {
     this.motion.start();
     var now = Date.now();
@@ -94,6 +98,11 @@ export default class Client {
       .then(peerStream => ui.setPeerStream(peerStream))
       .then(() => ui.showConnected())
       .then(() => this.sendSchedule());
+  }
+
+  updateDamage(act, count) {
+    ui.showPeerAttack(act);
+    ui.setPeerAttackCount(count);
   }
 
   _motion(act) {
@@ -147,6 +156,7 @@ export default class Client {
       ui.showSelfAttack(act, millis, extra);
       ui.setSelfAttackCount(this._actionCount);
       console.log('! hit:', act, this._actionCount);
+      this.sendAttackCount(act, this._actionCount);
 
       if (this._actionCount < 10) {
         return;

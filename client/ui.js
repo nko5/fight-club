@@ -35,7 +35,6 @@ export default {
     UIHelper.userHealth.self = 100;
     UIHelper.userHealth.peer = 100;
     updateHealthBars();
-    
     loopSound('crowd')
   },
 
@@ -55,7 +54,6 @@ export default {
     var health = ((10 - n)/10)*100;
     UIHelper.userHealth.peer = health;
     updateHealthBars();
-
     console.log('ATTACK:COUNT:SELF!', n);
   },
 
@@ -65,6 +63,9 @@ export default {
   },
 
   setPeerAttackCount(n) {
+    var health = ((10 - n)/10)*100;
+    UIHelper.userHealth.self = health;
+    updateHealthBars();
     console.log('ATTACK:COUNT:PEER!', n);
   },
 
