@@ -41,7 +41,7 @@ $(".back-home").click(function() {
 });
 
 $(".tweet").click(function() {
-  var tweet = "https://twitter.com/home?status=Join%20the%20%23FightClub%20%23NodeKnowckout%20http%3A//kadira.2015.nodeknockout.com/";
+  var tweet = "https://twitter.com/home?status=Join%20the%20%23FightClub%20%23NodeKnockout%20http%3A//kadira.2015.nodeknockout.com/";
   window.open(tweet,"","toolbar=no,status=no,menubar=no,location=center,scrollbars=no,resizable=no,height=500,width=657");
 });
 
