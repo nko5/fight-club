@@ -1,3 +1,19 @@
+var gameConfig = {
+  pos: "init",
+  user: null
+};
+
+var fighters = [
+  "Rambo",
+  "EthanHunt",
+  "JamesBond",
+  "Thor",
+  "Mr.Been",
+  "Kitana",
+  "Aashka",
+  "Loki"
+];
+
 $(document).ready(function() {
   var index = Math.floor((Math.random() * 7) + 1);
   var userName = fighters[index] + "_" + generateId();
@@ -16,14 +32,14 @@ $(".fight-now").click(function() {
 
   gameConfig.pos = "arena";
   renderUI();
-
   userName = prompt("Please enter your name", userName);
+  window.startGame();
 
   if(userName) {
     gameConfig.user = userName;
     $(".user-name").val(gameConfig.user) && $(".user-name").text(gameConfig.user);
   }
-  
+
 });
 
 $(".back-home").click(function() {
@@ -56,38 +72,6 @@ function renderUI() {
       break;
   }
 }
-
-// $(".start").click(function() {
-//   gameConfig.pos = "calibrate";
-//   gameConfig.user = $("input.user-name").val();
-//   renderUI();
-// });
-
-// $(".continue").click(function() {
-//   gameConfig.pos = "start";
-//   renderUI();
-// });
-
-// function renderUI() {
-//   switch (gameConfig.pos) {
-//     case "init":
-//       resetUI();
-//       $(".welcome").show();
-//       break;
-
-//     case "calibrate":
-//       resetUI();
-//       $(".calibrate").show();
-//       break;
-
-//     case "start":
-//       resetUI();
-//       $(".fight-area").show();
-//       break;
-//   }
-
-//   $(".user-name").val(gameConfig.user) && $(".user-name").text(gameConfig.user);
-// }
 
 function resetUI() {
   $(".page").hide();
