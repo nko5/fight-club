@@ -103,6 +103,7 @@ ol li {
 .arena h1 {
   font-size: 90px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .arena p {
@@ -119,6 +120,22 @@ ol li {
 
 .col-right {
   float: right;
+}
+
+.health-bar-container {
+  height: 5px;
+  width: 400px;
+  background: #480A0A;
+  margin-top: 315px;  
+}
+
+.health-bar {
+  background: red;
+  height: 5px;
+}
+
+.health-bar-container p {
+  font-size: 16px;
 }
 
 .clr {

@@ -21,10 +21,10 @@
       <div class="page rules">
         <h2>THE EIGHT RULES OF FIGHT CLUB</h2>
         <ol>
-          <li>You talk about FIGHT CLUB.<li>
-          <li>You MUST talk about FIGHT CLUB. <br/>You also <button class="tweet"></button> <span class="tab"></span>about it.<li>
-          <li>If someone disconnects, the fight is over.<li>
-          <li>Only two guys to a fight.<li>
+          <li>You talk about FIGHT CLUB.</li>
+          <li>You MUST talk about FIGHT CLUB. <br/>You also <button class="tweet"></button> <span class="tab"></span>about it.</li>
+          <li>If someone disconnects, the fight is over.</li>
+          <li>Only two guys to a fight.</li>
           <li>Much much more than one fight at a time.</li>
           <li>Shirts mandatory, Shoes optional.</li>
           <li>Fights will go on as long as they have to.</li>
@@ -35,6 +35,7 @@
       </div>
 
       <div class="page arena">
+        <h1>FIGHT CLUB</h1>
         <div id="battlefield">
           <div id="self-container" class="video-container">
             <video id="video-self" width="400" height="300"></video>
@@ -42,11 +43,21 @@
             <canvas id="canvas-blended" style="display:none" width="400" height="300"></canvas>
             <canvas id="canvas-overlay-self" width="400" height="300"></canvas>
             <canvas id="webgl-self" width="400" height="300"></canvas>
+
+            <div class="health-bar-container">
+              <div class="health-bar" style="width: 80%;"></div>
+              <p>Health (80%)</p>
+            </div>
           </div>
           <div id="peer-container" class="video-container">
             <video id="video-peer" width="400" height="300"></video>
             <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
             <canvas id="webgl-self" width="400" height="300"></canvas>
+
+            <div class="health-bar-container">
+              <div class="health-bar" style="width: 30%;"></div>
+              <p>Health (30%)</p>
+            </div>
           </div>
         </div>
       </div>
