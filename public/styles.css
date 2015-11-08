@@ -37,6 +37,24 @@ body {
 	filter : fliph; /*IE*/
 }
 
+#peer-container {
+  display: none;
+}
+
+#self-container {
+  transform: scale(2) translateX(-100px) translateY(75px);
+}
+
+#battlefield.ready #peer-container {
+  display: block;
+  transform: scale(2) translateX(100px) translateY(75px);
+}
+
+#battlefield.ready #self-container {
+  transform: scale(0.4) translateX(280px) translateY(960px);
+  box-shadow: 3px 3px 3px #000;
+}
+
 h1, h2, a.btn {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
