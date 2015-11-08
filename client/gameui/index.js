@@ -14,9 +14,6 @@ var fighters = [
   "Loki"
 ];
 
-$(document).ready(function() {
-});
-
 $(".show-rules").click(function() {
   gameConfig.pos = "rules";
   renderUI();
