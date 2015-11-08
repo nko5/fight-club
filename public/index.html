@@ -4,23 +4,62 @@
   <head>
     <script type="text/javascript" src="vendor/peer.min.js"></script>
     <script type="text/javascript" src="vendor/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="vendor/cufon-yui.js"></script>
+    <script type="text/javascript" src="vendor/FightThis_400.font.js"></script>
     <link rel='stylesheet' type='text/css' href='styles.css'>
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div id="battlefield">
-      <div id="self-container" class="video-container">
-        <video id="video-self" width="400" height="300"></video>
-        <canvas id="canvas-source" style="display:none" width="400" height="300"></canvas>
-        <canvas id="canvas-blended" style="display:none" width="400" height="300"></canvas>
-        <canvas id="canvas-overlay-self" width="400" height="300"></canvas>
-        <canvas id="webgl-self" width="400" height="300"></canvas>
+    <div class="wrapper">
+      <div class="page welcome">
+        <h1>FIGHT CLUB</h1>
+        <a class="btn fight-now" href="javascript:void(0);">FIGHT NOW</a>
+        <a class="btn show-rules" href="javascript:void(0);">RULES</a>
       </div>
-      <div id="peer-container" class="video-container">
-        <video id="video-peer" width="400" height="300"></video>
-        <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
-        <canvas id="webgl-self" width="400" height="300"></canvas>
+
+      <div class="page rules">
+        <h2>THE EIGHT RULES OF FIGHT CLUB</h2>
+        <ol>
+          <li>You talk about FIGHT CLUB.<li>
+          <li>You MUST talk about FIGHT CLUB. <br/>You also <button class="tweet"></button> <span class="tab"></span>about it.<li>
+          <li>If someone disconnects, the fight is over.<li>
+          <li>Only two guys to a fight.<li>
+          <li>Much much more than one fight at a time.</li>
+          <li>Shirts mandatory, Shoes optional.</li>
+          <li>Fights will go on as long as they have to.</li>
+          <li>If this is your first time at FIGHT CLUB, <br/>you HAVE to fight. If not, you still have to fight</li>
+        </ol>
+
+        <a class="btn back-home" href="javascript:void(0);">BACK</a>
+      </div>
+
+      <div class="page arena">
+        <div id="battlefield">
+          <div id="self-container" class="video-container">
+            <video id="video-self" width="400" height="300"></video>
+            <canvas id="canvas-source" style="display:none" width="400" height="300"></canvas>
+            <canvas id="canvas-blended" style="display:none" width="400" height="300"></canvas>
+            <canvas id="canvas-overlay-self" width="400" height="300"></canvas>
+            <canvas id="webgl-self" width="400" height="300"></canvas>
+          </div>
+          <div id="peer-container" class="video-container">
+            <video id="video-peer" width="400" height="300"></video>
+            <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
+            <canvas id="webgl-self" width="400" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="vote-us">
+        <iframe src="http://nodeknockout.com/iframe/kadira" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>
       </div>
     </div>
+
+    <script type="text/javascript">
+      Cufon.replace('h1', { fontFamily: 'FightThis' });
+      Cufon.replace('h2', { fontFamily: 'FightThis' });
+    </script>
 
     <script type="text/javascript" src="bundle.js"></script>
     <script type="text/javascript" src="vendor/clmtrackr/js/dat.gui.min.js"></script>

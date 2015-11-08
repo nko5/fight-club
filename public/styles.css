@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+body {
+  background: #111;
+  background-image: url(images/bg.png);
+  overflow: hidden;
+}
+
 #battlefield {
   width: 810px;
   min-height: 300px;
@@ -29,4 +35,149 @@
 	transform : scaleX(-1);
 	-ms-filter : fliph; /*IE*/
 	filter : fliph; /*IE*/
+}
+
+h1 {
+  color: red;
+  font-size: 150px;
+}
+
+h2 {
+  font-size: 58px;
+  margin-bottom: 15px;
+}
+
+h2 img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+p {
+  margin: 10px 0;
+}
+
+ol li {
+  margin: 15px;
+  font-size: 26px;
+}
+
+.vote-us {
+  position: fixed;
+  width: 105px;
+  right: 12px;
+  top: 15px;
+}
+
+.page {
+  display: none;
+}
+
+.welcome {
+  margin: auto;
+  width: 840px;
+  display: block;
+  position: relative;
+  padding-top: 230px;
+}
+
+.rules {
+  width: 840px;
+  height: calc(100%);
+  margin: auto;
+  font-family: 'Architects Daughter', cursive;
+  color: white;
+  padding-top: 100px;
+}
+
+.arena {
+  margin: auto;
+  width: 840px;
+  height: 400px;
+  padding-top: 50px;
+  font-family: 'Architects Daughter', cursive;
+  color: white;
+}
+
+.arena h1 {
+  font-size: 90px;
+  margin-bottom: 20px;
+}
+
+.arena p {
+  font-size: 20px;
+}
+
+.video-pane video {
+  width: 420px;
+}
+
+.col-left {
+  float: left;
+}
+
+.col-right {
+  float: right;
+}
+
+.clr {
+  clear: both;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.tweet {
+  background-image: url(../images/tweet.png);
+  background-size: cover;
+  height: 27px;
+  position: absolute;
+  margin-top: 5px;
+  width: 75px;
+  outline: 0;
+  border: none;
+}
+
+span.tab {
+  margin-left: 83px;
+}
+
+/* css button */
+
+a.btn {
+  position: relative;
+  color: rgba(255,255,255,1);
+  text-decoration: none;
+  background-color: rgba(219,87,5,1);
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: 700;
+  font-size: 3em;
+  display: inline-block;
+  padding: 4px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  margin: 30px 5px;
+  width: 160px;
+  text-align: center;
+
+  -webkit-transition: all .1s ease;
+  -moz-transition: all .1s ease;
+  -ms-transition: all .1s ease;
+  -o-transition: all .1s ease;
+  transition: all .1s ease;
+}
+
+a.btn:active {
+    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
 }

@@ -1,9 +1,9 @@
 import engine from 'engine.io-client';
 import Client from './client';
 import ui from './ui';
+import './gameui/';
 
-jQuery(document).ready(function () {
-
+window.startGame = function () {
   let socket = engine(location.origin);
   let client;
 
@@ -46,4 +46,4 @@ jQuery(document).ready(function () {
       }
     },
   };
-});
+}
