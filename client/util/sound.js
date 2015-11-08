@@ -1,6 +1,9 @@
 var fightClubSounds = {};
 initializeSound();
 
+let bgAudio = document.getElementById("bg-sound");
+bgAudio.volume = 0.2
+
 export function initializeSound(){
   let knownSounds = {
     'bell': 'bell.wav',
