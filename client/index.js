@@ -3,7 +3,7 @@ import Client from './client';
 import ui from './ui';
 import './gameui/';
 
-window.startGame = function () {
+function startGameWithIce() {
   let socket = engine(location.origin);
   let client;
 
@@ -56,4 +56,21 @@ window.startGame = function () {
       client.sendReady();
     },
   };
+}
+
+window.startGame = function () {
+  $(document).ready(function() {
+    $.get("https://service.xirsys.com/ice", {
+        ident: "mnmtanish",
+        secret: "aff40fbc-864a-11e5-81e7-bf4681af6943",
+        domain: "kadira.2015.nodeknockout.com",
+        application: "default",
+        room: "default",
+        secure: 1
+      }, function(data, status) {
+        window.iceServers = data.d.iceServers;
+        startGameWithIce();
+      }
+    );
+  });
 }

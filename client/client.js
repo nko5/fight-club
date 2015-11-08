@@ -35,6 +35,7 @@ export default class Client {
           host: location.hostname,
           port: location.port,
           path: '/peer',
+          config: {iceServers: window.iceServers},
         });
 
         this.peerjs.once('open', () => {
