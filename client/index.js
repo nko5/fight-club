@@ -42,7 +42,7 @@ window.startGame = function () {
       if (msg.count === 10) {
         client.stopTracking();
         ui.showLoseMessage();
-        this.sendRestime(1e9);
+        client.sendRestime(1e9);
       }
     },
 
