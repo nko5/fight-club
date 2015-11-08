@@ -15,6 +15,7 @@ export default class Client {
     this.isCaller = false;
 
     this._opponent = null;
+    this._complete = null;
     this._mediaConn = null;
     this._countActions = null;
     this._actionCount = 0;
@@ -114,6 +115,15 @@ export default class Client {
     ui.setPeerAttackCount(count);
   }
 
+  checkDisconnect() {
+    if (!this._complete) {
+      console.log('! log: opponent disconnected');
+      this.stopTracking();
+      ui.showWinMessage();
+      this.sendReady();
+    }
+  }
+
   _motion(act) {
     if(this._countActions) {
       this._actionCount++;
@@ -126,6 +136,7 @@ export default class Client {
 
   _answer(call, stream) {
     if (this._mediaConn) {
+      this._complete = true;
       this._mediaConn.close();
     }
 
@@ -134,6 +145,9 @@ export default class Client {
     return new Promise((resolve, reject) => {
       call.answer(stream);
       call.once('stream', resolve);
+
+      this._complete = false;
+      call.once('close', () => this.checkDisconnect());
     });
   }
 
@@ -141,11 +155,15 @@ export default class Client {
     return new Promise((resolve, reject) => {
       var call = this.peerjs.call(id, stream);
       if (this._mediaConn) {
+        this._complete = true;
         this._mediaConn.close();
       }
 
       this._mediaConn = call;
       call.once('stream', resolve);
+
+      this._complete = false;
+      call.once('close', () => this.checkDisconnect());
     });
   }
 
