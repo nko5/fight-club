@@ -1,6 +1,7 @@
 import getcam from './util/getcam';
 import Motion from './util/motion';
 import ui from './ui';
+import {stopLoop} from './overlay/deform';
 
 const CHEAT_THRESHOLD = 3;
 
@@ -147,7 +148,10 @@ export default class Client {
       call.once('stream', resolve);
 
       this._complete = false;
-      call.once('close', () => this.checkDisconnect());
+      call.once('close', () => {
+        stopLoop("peer");
+        this.checkDisconnect();
+      });
     });
   }
 
@@ -163,7 +167,10 @@ export default class Client {
       call.once('stream', resolve);
 
       this._complete = false;
-      call.once('close', () => this.checkDisconnect());
+      call.once('close', () => {
+        stopLoop("peer");
+        this.checkDisconnect();
+      });
     });
   }
 
