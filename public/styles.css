@@ -40,11 +40,13 @@ body {
 h1 {
   color: red;
   font-size: 150px;
+  font-family: 'fightthisregular';
 }
 
 h2 {
   font-size: 58px;
   margin-bottom: 15px;
+  font-family: 'fightthisregular';
 }
 
 h2 img {
