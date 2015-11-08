@@ -25,9 +25,8 @@ export default {
   },
 
   showConnected() {
-    $('.health-bar-peer').css('width', '100%');
-    $('.health-bar-peer-text').text(100);
-
+    resetHealthBars();
+    
     loopSound('crowd')
   },
 
@@ -44,9 +43,7 @@ export default {
   },
 
   setSelfAttackCount(n) {
-    var health = ((10 - n)/10)*100;
-    $('.health-bar-peer').css('width', health+'%');
-    $('.health-bar-peer-text').text(health);
+    updateHealth('peer', n)
 
     console.log('ATTACK:COUNT:SELF!', n);
   },
@@ -76,3 +73,19 @@ export default {
     console.log('ROUND %d', round);
   }
 };
+
+function resetHealthBars() {
+  $('.health-bar-peer').css('width', '100%');
+  $('.health-bar-peer-text').text(100);
+
+  $('.health-bar-self').css('width', '100%');
+  $('.health-bar-self-text').text(100);
+
+}
+
+function updateHealth(target, n) {
+  var health = ((10 - n)/10)*100;
+
+  $('.health-bar-'+target).css('width', health+'%');
+  $('.health-bar-'+target+'-text').text(health);
+}

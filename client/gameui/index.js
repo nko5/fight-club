@@ -15,10 +15,6 @@ var fighters = [
 ];
 
 $(document).ready(function() {
-  var index = Math.floor((Math.random() * 7) + 1);
-  var userName = fighters[index] + "_" + generateId();
-  gameConfig.user = userName;
-  $(".user-name").val(gameConfig.user) && $(".user-name").text(gameConfig.user);
 });
 
 $(".show-rules").click(function() {
@@ -32,7 +28,7 @@ $(".fight-now").click(function() {
 
   gameConfig.pos = "arena";
   renderUI();
-  userName = prompt("Please enter your name", userName);
+  // userName = prompt("Please enter your name", userName);
   window.startGame();
 
   if(userName) {
