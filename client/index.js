@@ -43,9 +43,7 @@ window.startGame = function () {
         ui.showLoseMessage();
       }
 
-      if (client.isCaller) {
-        client.sendSchedule();
-      }
+      client.sendReady();
     },
   };
 }

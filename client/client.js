@@ -14,7 +14,8 @@ export default class Client {
     this.motion = null;
     this.isCaller = false;
 
-    this._opponent = '';
+    this._opponent = null;
+    this._mediaConn = null;
     this._countActions = null;
     this._actionCount = 0;
     this._actionCallback = null;
@@ -29,6 +30,7 @@ export default class Client {
         return stream;
       })
       .then(() => {
+        console.log('! log: starting new game');
         this.peerjs = new Peer(this.id, {
           host: location.hostname,
           port: location.port,
@@ -53,6 +55,7 @@ export default class Client {
   }
 
   sendReady() {
+    this._opponent = null;
     this.sendMsg({type: 'ready'});
     ui.setMode('waiting');
   }
@@ -104,6 +107,11 @@ export default class Client {
   }
 
   _answer(call, stream) {
+    if (this._mediaConn) {
+      this._mediaConn.close();
+    }
+
+    this._mediaConn = call;
     this._opponent = call.peer;
     return new Promise((resolve, reject) => {
       call.answer(stream);
@@ -114,6 +122,11 @@ export default class Client {
   _call(id, stream) {
     return new Promise((resolve, reject) => {
       var call = this.peerjs.call(id, stream);
+      if (this._mediaConn) {
+        this._mediaConn.close();
+      }
+
+      this._mediaConn = call;
       call.once('stream', resolve);
     });
   }
