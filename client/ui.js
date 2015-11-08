@@ -33,6 +33,7 @@ export default {
   },
 
   showConnected() {
+    $('#battlefield').addClass('ready');
     UIHelper.userHealth.self = 100;
     UIHelper.userHealth.peer = 100;
     updateHealthBars();

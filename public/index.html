@@ -13,10 +13,8 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="overlay-flicker"></div>
-
       <div class="page welcome">
-        <!-- <h1>Fight Club</h1> -->
+        <div class="overlay-flicker"></div>
         <div>
           <img src="images/logo.png" alt="Fight Club" />
         </div>
@@ -25,10 +23,10 @@
       </div>
 
       <div class="page rules">
+        <div class="overlay-flicker"></div>
         <h2>THE EIGHT RULES OF FIGHT CLUB</h2>
         <ol>
           <li>You talk about FIGHT CLUB.</li>
-          <!-- <li>You MUST talk about FIGHT CLUB. <br/>You also <button class="tweet"></button> <span class="tab"></span>about it.</li> -->
           <li>You MUST talk about FIGHT CLUB. <br/>You also <a href="#">Tweet</a> about it.</li>
           <li>If someone disconnects, the fight is over.</li>
           <li>Only two guys to a fight.</li>
@@ -44,6 +42,22 @@
       <div class="page arena">
         <img src="images/logo.png" alt="Fight Club" class="arena-logo"/>
         <div id="battlefield">
+          <div id="peer-container" class="video-container">
+            <div class="effects" width="400" height="300">
+              <img src="images/bang.png" id="peer-bang" class="bang invisible" width="80">
+              <img src="images/kaboom.png" id="peer-kaboom" class="bang invisible" width="110">
+              <img src="images/bam.png" id="peer-bam" class="bang invisible" width="120">
+              <img src="images/boom.png" id="peer-boom" class="bang invisible" width="120">
+            </div>
+            <video id="video-peer" width="400" height="300"></video>
+            <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
+            <canvas id="webgl-self" width="400" height="300"></canvas>
+
+            <div class="health-bar-container">
+              <div class="health-bar health-bar-peer" style="width: 100%;"></div>
+              <p>Health (<span class="health-bar-peer-text">100</span>%)</p>
+            </div>
+          </div>
           <div id="self-container" class="video-container">
             <div class="effects" width="400" height="300">
               <img src="images/bang.png" id="self-bang" class="bang invisible" width="80">
@@ -60,22 +74,6 @@
             <div class="health-bar-container">
               <div class="health-bar health-bar-self" style="width: 100%;"></div>
               <p>Health (<span class="health-bar-self-text">100</span>%)</p>
-            </div>
-          </div>
-          <div id="peer-container" class="video-container">
-            <div class="effects" width="400" height="300">
-              <img src="images/bang.png" id="peer-bang" class="bang invisible" width="80">
-              <img src="images/kaboom.png" id="peer-kaboom" class="bang invisible" width="110">
-              <img src="images/bam.png" id="peer-bam" class="bang invisible" width="120">
-              <img src="images/boom.png" id="peer-boom" class="bang invisible" width="120">
-            </div>
-            <video id="video-peer" width="400" height="300"></video>
-            <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
-            <canvas id="webgl-self" width="400" height="300"></canvas>
-
-            <div class="health-bar-container">
-              <div class="health-bar health-bar-peer" style="width: 100%;"></div>
-              <p>Health (<span class="health-bar-peer-text">100</span>%)</p>
             </div>
           </div>
         </div>

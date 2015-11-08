@@ -10,7 +10,7 @@ body {
 }
 
 #battlefield {
-  width: 810px;
+  width: 800px;
   min-height: 300px;
   margin: 0 auto;
 }
@@ -35,6 +35,24 @@ body {
 	transform : scaleX(-1);
 	-ms-filter : fliph; /*IE*/
 	filter : fliph; /*IE*/
+}
+
+#peer-container {
+  display: none;
+}
+
+#self-container {
+  transform: scale(2) translateX(-100px) translateY(75px);
+}
+
+#battlefield.ready #peer-container {
+  display: block;
+  transform: scale(2) translateX(100px) translateY(75px);
+}
+
+#battlefield.ready #self-container {
+  transform: scale(0.4) translateX(280px) translateY(960px);
+  box-shadow: 3px 3px 3px #000;
 }
 
 h1, h2, a.btn {
@@ -73,11 +91,25 @@ p {
 
 ol li {
   margin: 15px;
-  font-size: 26px;
+  font-size: 22px;
   list-style: none;
   transition: all 0.1s;
   user-select: none;
-  cursor:default
+  cursor:default;
+  font-family: 'fightthisregular';
+  letter-spacing: 1px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: skew(15deg);
+}
+
+ol:hover li {
+  opacity: 0.2;
+}
+
+ol:hover li:hover {
+  transform: scale(2) skew(15deg);
+  opacity: 1;
 }
 
 ol li a {
@@ -102,7 +134,7 @@ ol li a {
   display: block;
   position: relative;
   text-align: center;
-  padding-top: 180px;
+  padding-top: 120px;
 }
 
 .welcome img {
@@ -116,7 +148,7 @@ ol li a {
   text-align: center;
   font-family: 'Architects Daughter', cursive;
   color: white;
-  padding-top: 180px;
+  padding-top: 120px;
 }
 
 .arena {
@@ -151,15 +183,15 @@ ol li a {
 
 .health-bar-container {
   position: absolute;
-  top: 290px;
-  height: 10px;
+  top: -5px;
+  height: 5px;
   width: 400px;
   background: #480A0A;
 }
 
 .health-bar {
   background: rgba(219,31,5,1);
-  height: 10px;
+  height: 5px;
 }
 
 .health-bar-container p {
