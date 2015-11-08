@@ -107,10 +107,19 @@ var hitsHolder = {
   peer: 0,
   self: 0
 };
+var stopLoopHolder = {
+  peer: false,
+  self: false
+};
 
 export function deformFace(user, deformType = "unwell", hits) {
   deformTypeHolder[user] = deformType;
   hitsHolder[user] = hits;
+  stopLoopHolder[user] = false;
+}
+
+export function stopLoop(user){
+  stopLoopHolder[user] = true;
 }
 
 export function initDeformFace(user) {
@@ -186,7 +195,7 @@ export function initDeformFace(user) {
       tempPos[1] = (item[1] - item62[1])*1.3 + item62[1];
       addPos.push(tempPos);
     }
-    if(typeof pos.concat !== "function"){
+    if(typeof pos.concat !== "function" || !stopLoopHolder[user]){
       animationRequest = requestAnimFrame(drawMaskLoop);
       return;
     }
