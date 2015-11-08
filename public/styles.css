@@ -37,10 +37,17 @@ body {
 	filter : fliph; /*IE*/
 }
 
+h1, h2, a.btn {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 h1 {
-  color: red;
-  font-size: 150px;
+  color: #D01515;
+  font-size: 180px;
   font-family: 'fightthisregular';
+  text-shadow: 0 -5px 0 #000;
+  letter-spacing: 6px;
 }
 
 h2 {
@@ -102,10 +109,10 @@ ol li {
   color: white;
 }
 
-.arena h1 {
-  font-size: 90px;
-  margin-bottom: 20px;
-  text-align: center;
+.arena img {
+  width: 50%;
+  display: block;
+  margin: 0 auto 50px auto;
 }
 
 .arena p {
@@ -128,7 +135,7 @@ ol li {
   height: 5px;
   width: 400px;
   background: #480A0A;
-  margin-top: 315px;  
+  margin-top: 315px;
 }
 
 .health-bar {
@@ -171,32 +178,69 @@ a.btn {
   color: rgba(255,255,255,1);
   text-decoration: none;
   background-color: rgba(219,87,5,1);
+  transform: skew(-15deg);
   font-family: 'Yanone Kaffeesatz';
   font-weight: 700;
   font-size: 3em;
   display: inline-block;
   padding: 4px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-  -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+  letter-spacing: 2px;
   box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
   margin: 30px 5px;
   width: 160px;
   text-align: center;
-
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  transition: all .1s ease;
 }
 
-a.btn:active {
-    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
-    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
-    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+a.btn:active, a.btn:hover {
+    box-shadow: 0px 0px 0px rgba(219,31,5,1), 0px 0px 6px rgba(0,0,0,.9);
     position: relative;
-    top: 6px;
+    top: 9px;
+}
+
+.overlay-flicker {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(900px at 50% -10%, rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.05) 50%);
+  -webkit-animation-name: flicker;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+/* https://gist.github.com/oddlyzen/1229700 */
+@-webkit-keyframes flicker {
+	from {opacity: 0.3;}
+	4% {opacity: 0.3;}
+	6% {opacity: 0.25;}
+	8% {opacity: 0.35;}
+	10% {opacity: 0.25;}
+	11% {opacity: 0.3;}
+	12% {opacity: 0.85;}
+	14% {opacity: 0.35;}
+	16% {opacity: 0.90;}
+	17% {opacity: 0.35;}
+	19% {opacity: 0.3;}
+	20% {opacity: 0.3;}
+	24% {opacity: 0.3;}
+	26% {opacity: 0.89;}
+	28% {opacity: 0.3;}
+	38% {opacity: 0.05;}
+	40% {opacity: 0.3;}
+	42% {opacity: 0.8;}
+	44% {opacity: 0.3;}
+	46% {opacity: 0.3;}
+	56% {opacity: 0.3;}
+	58% {opacity: 0.95;}
+	60% {opacity: 0.3;}
+	68% {opacity: 0.3;}
+  70% {opacity: .8; /*peak*/}
+	72% {opacity: 0.3;}
+	93% {opacity: 0.3;}
+  95% {opacity: .8; /*peak*/}
+	97% {opacity: 0.3;}
+	to {opacity: 0.3;}
 }
