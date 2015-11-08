@@ -25,6 +25,9 @@ export default {
   },
 
   showConnected() {
+    $('.health-bar-peer').css('width', '100%');
+    $('.health-bar-peer-text').text(100);
+
     loopSound('crowd')
   },
 
@@ -41,6 +44,10 @@ export default {
   },
 
   setSelfAttackCount(n) {
+    var health = ((10 - n)/10)*100;
+    $('.health-bar-peer').css('width', health+'%');
+    $('.health-bar-peer-text').text(health);
+
     console.log('ATTACK:COUNT:SELF!', n);
   },
 

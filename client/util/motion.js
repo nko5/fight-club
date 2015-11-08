@@ -177,6 +177,7 @@ export default class Motion {
     }
 
     if (me.touched - lastSpot.touched < 1000) {
+      console.log(me, lastName);
       this.handler(lastName);
     }
   }
