@@ -42,9 +42,15 @@
       </div>
 
       <div class="page arena">
-        <img src="images/logo.png" alt="Fight Club" />
+        <img src="images/logo.png" alt="Fight Club" class="arena-logo"/>
         <div id="battlefield">
           <div id="self-container" class="video-container">
+            <div class="effects" width="400" height="300">
+              <img src="images/bang.png" id="self-bang" class="bang invisible" width="80">
+              <img src="images/kaboom.png" id="self-kaboom" class="bang invisible" width="120">
+              <img src="images/bam.png" id="self-bam" class="bang invisible" width="120">
+              <img src="images/boom.png" id="self-boom" class="bang invisible" width="120">
+            </div>
             <video id="video-self" width="400" height="300"></video>
             <canvas id="canvas-source" style="display:none" width="400" height="300"></canvas>
             <canvas id="canvas-blended" style="display:none" width="400" height="300"></canvas>
@@ -57,6 +63,12 @@
             </div>
           </div>
           <div id="peer-container" class="video-container">
+            <div class="effects" width="400" height="300">
+              <img src="images/bang.png" id="peer-bang" class="bang invisible" width="80">
+              <img src="images/kaboom.png" id="peer-kaboom" class="bang invisible" width="110">
+              <img src="images/bam.png" id="peer-bam" class="bang invisible" width="120">
+              <img src="images/boom.png" id="peer-boom" class="bang invisible" width="120">
+            </div>
             <video id="video-peer" width="400" height="300"></video>
             <canvas id="canvas-overlay-peer" width="400" height="300"></canvas>
             <canvas id="webgl-self" width="400" height="300"></canvas>

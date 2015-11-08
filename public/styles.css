@@ -127,7 +127,7 @@ ol li a {
   color: white;
 }
 
-.arena img {
+.arena img.arena-logo {
   width: 50%;
   display: block;
   margin: 0 auto 50px auto;
@@ -154,6 +154,7 @@ ol li a {
   top: 290px;
   height: 10px;
   width: 400px;
+  background: #480A0A;
 }
 
 .health-bar {
@@ -262,4 +263,20 @@ a.btn:active, a.btn:hover {
   95% {opacity: .8; /*peak*/}
 	97% {opacity: 0.3;}
 	to {opacity: 0.3;}
+}
+
+/* Kaboom */
+
+.bang {
+  position: absolute;
+  display: none;
+  z-index: 5;
+}
+
+#self-bang {
+
+}
+
+#self-bang {
+
 }
