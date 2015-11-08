@@ -64,7 +64,7 @@ const handlers = {
       return;
     }
 
-    const ts = Date.now() + 2000 + Math.floor(5000 * Math.random());
+    const ts = Date.now() + 2000 + Math.floor(3000 * Math.random());
     client.sendTime(ts);
     opponent.sendTime(ts);
   },
