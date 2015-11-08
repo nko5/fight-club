@@ -72,7 +72,7 @@ const handlers = {
   restime(client, msg) {
     const opponent = sockets[msg.opponent];
     if (!opponent) {
-      client.sendResult(null);
+      // client.sendOpponentLeft(null);
       return;
     }
 
@@ -90,4 +90,14 @@ const handlers = {
       opponent.sendResult(opponent.id);
     }
   },
+
+  attack(client, msg) {
+    const opponent = sockets[msg.opponent];
+    if (!opponent) {
+      // client.sendOpponentLeft(null);
+      return;
+    }
+
+    opponent.sendDamage(msg.act, msg.count);
+  }
 };

@@ -22,4 +22,8 @@ export default class Client {
   sendResult(id) {
     this.sendMsg({type: 'result', id});
   }
+
+  sendDamage(act, count) {
+    this.sendMsg({type: 'damage', act, count});
+  }
 }

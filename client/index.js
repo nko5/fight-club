@@ -36,6 +36,10 @@ window.startGame = function () {
       client.trackRestime(msg.ts);
     },
 
+    damage(msg) {
+      client.updateDamage(msg.act, msg.count);
+    },
+
     result(msg) {
       if (msg.id === client.id) {
         ui.showWinMessage();
