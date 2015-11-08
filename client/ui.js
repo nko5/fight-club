@@ -1,5 +1,12 @@
 import {playSound, stopSound, loopSound} from './util/sound'
 
+var UIHelper = {
+  userHealth: {
+    self: 100,
+    peer: 100
+  }
+};
+
 export default {
   setMode(mode) {
     console.log('mode:', mode);
@@ -25,7 +32,9 @@ export default {
   },
 
   showConnected() {
-    resetHealthBars();
+    UIHelper.userHealth.self = 100;
+    UIHelper.userHealth.peer = 100;
+    updateHealthBars();
     
     loopSound('crowd')
   },
@@ -43,7 +52,9 @@ export default {
   },
 
   setSelfAttackCount(n) {
-    updateHealth('peer', n)
+    var health = ((10 - n)/10)*100;
+    UIHelper.userHealth.peer = health;
+    updateHealthBars();
 
     console.log('ATTACK:COUNT:SELF!', n);
   },
@@ -74,18 +85,13 @@ export default {
   }
 };
 
-function resetHealthBars() {
-  $('.health-bar-peer').css('width', '100%');
-  $('.health-bar-peer-text').text(100);
+function updateHealthBars() {
+  var selfHealth = UIHelper.userHealth.self;
+  var peerHealth = UIHelper.userHealth.peer;
 
-  $('.health-bar-self').css('width', '100%');
-  $('.health-bar-self-text').text(100);
+  $('.health-bar-self').css('width', selfHealth+'%');
+  $('.health-bar-self-text').text(selfHealth);
 
-}
-
-function updateHealth(target, n) {
-  var health = ((10 - n)/10)*100;
-
-  $('.health-bar-'+target).css('width', health+'%');
-  $('.health-bar-'+target+'-text').text(health);
+  $('.health-bar-peer').css('width', peerHealth+'%');
+  $('.health-bar-peer-text').text(peerHealth);
 }
