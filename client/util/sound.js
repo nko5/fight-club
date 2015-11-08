@@ -18,9 +18,8 @@ export function initializeSound(){
 }
 
 export function playSound(name){
-  let sound = fightClubSounds[name]
-
-  sound.load();
+  let sound = fightClubSounds[name];
+  sound.currentTime = 0;
   sound.play();
 }
 
@@ -33,7 +32,7 @@ export function stopSound(name){
 export function loopSound(name){
   let sound = fightClubSounds[name]
 
-  sound.load();
+  sound.currentTime = 0;
   sound.loop = true;
   sound.play();
 }
