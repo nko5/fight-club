@@ -42,6 +42,10 @@ h1, h2, a.btn {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2 {
+  pointer-events: none;
+}
+
 h1 {
   color: #D01515;
   font-size: 180px;
@@ -70,6 +74,15 @@ p {
 ol li {
   margin: 15px;
   font-size: 26px;
+  list-style: none;
+  transition: all 0.1s;
+  user-select: none;
+  cursor:default
+}
+
+ol li a {
+  color: white;
+  transition: all 0.1s;
 }
 
 .vote-us {
@@ -81,23 +94,29 @@ ol li {
 
 .page {
   display: none;
+  width: 80%;
 }
 
 .welcome {
   margin: auto;
-  width: 840px;
   display: block;
   position: relative;
-  padding-top: 230px;
+  text-align: center;
+  padding-top: 180px;
+}
+
+.welcome img {
+  display: inline-block;
+  clear: both;
 }
 
 .rules {
-  width: 840px;
   height: calc(100%);
   margin: auto;
+  text-align: center;
   font-family: 'Architects Daughter', cursive;
   color: white;
-  padding-top: 100px;
+  padding-top: 180px;
 }
 
 .arena {
@@ -105,7 +124,6 @@ ol li {
   width: 840px;
   height: 400px;
   padding-top: 50px;
-  font-family: 'Architects Daughter', cursive;
   color: white;
 }
 
@@ -132,18 +150,19 @@ ol li {
 }
 
 .health-bar-container {
-  height: 5px;
+  position: absolute;
+  top: 290px;
+  height: 10px;
   width: 400px;
-  background: #480A0A;
-  margin-top: 315px;
 }
 
 .health-bar {
-  background: red;
-  height: 5px;
+  background: rgba(219,31,5,1);
+  height: 10px;
 }
 
 .health-bar-container p {
+  display: none;
   font-size: 16px;
 }
 
