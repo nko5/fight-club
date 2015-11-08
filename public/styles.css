@@ -40,22 +40,31 @@ body {
 
 #peer-container {
   opacity: 0;
-  transform: translateX(200px);
+  /*transform: translateX(200px);*/
   transition: all 1s;
 }
 
 #self-container {
-  transform: translateX(-200px);
+  /*transform: translateX(-200px);*/
+  transition: all 1s;
+}
+
+#instructions {
+  opacity: 1;
   transition: all 1s;
 }
 
 #battlefield.ready #peer-container {
   opacity: 1;
-  transform: translateX(0);
+  /*transform: translateX(0);*/
 }
 
 #battlefield.ready #self-container {
-  transform: translateX(0);
+  /*transform: translateX(0);*/
+}
+
+#battlefield.ready #instructions {
+  opacity: 0;
 }
 
 h1, h2, a.btn {
