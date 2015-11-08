@@ -126,17 +126,16 @@ export default class Client {
     if (this._actionCount > CHEAT_THRESHOLD) {
       console.log('! log: cheat detected');
       extra = 1000;
-      return;
     }
 
     const startTime = Date.now();
     this._actionCallback = act => {
+      console.log('act:', act);
       this._actionCallback = null;
+      this.motion.stop();
       const millis = Date.now() - startTime;
       ui.showSelfAttack(act, millis, extra);
       this.sendRestime(millis + extra);
     };
-
-    this.motion.stop();
   }
 }
