@@ -82,7 +82,7 @@ ol li {
   font-family: 'Yanone Kaffeesatz';
   color: white;
   padding-top: 150px;
-  background-image: url(../images/bg_inner.png);
+ /* background-image: url(../images/bg_inner.png);*/
 }
 
 button {
@@ -96,12 +96,13 @@ button.tweet {
   height: 27px;
   position: absolute;
   margin-top: 5px;
-  width: 70px;
+  width: 75px;
   outline: 0;
+  border: none;
 }
 
 span.tab {
-  margin-left: 76px;
+  margin-left: 80px;
 }
 
 /* Fight Club */
