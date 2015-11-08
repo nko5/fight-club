@@ -79,10 +79,35 @@ ol li {
   width: 840px;
   height: calc(100%);
   margin: auto;
-  font-family: 'Yanone Kaffeesatz';
+  /* font-family: 'Yanone Kaffeesatz';*/
+  font-family: 'Architects Daughter', cursive;
   color: white;
-  padding-top: 150px;
- /* background-image: url(../images/bg_inner.png);*/
+  padding-top: 100px;
+  /* background-image: url(../images/bg_inner.png);*/
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  
+  /*
+  Nope =(
+  margin-left: -25%;
+  margin-top: -25%;
+  */
+
+  /* 
+  Yep!
+  */
+  transform: translate(-50%, -50%);
+  
+  /*
+  Not even necessary really. 
+  e.g. Height could be left out!
+  */
+  width: 40%;
+  height: 50%;
 }
 
 button {
@@ -102,7 +127,7 @@ button.tweet {
 }
 
 span.tab {
-  margin-left: 80px;
+  margin-left: 83px;
 }
 
 /* Fight Club */

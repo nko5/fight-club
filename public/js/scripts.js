@@ -35,7 +35,8 @@ function renderUI() {
     case "rules":
       resetUI();
       $(".rules").show();
-      $(".rules").height($(window).height());
+      // $(".rules").height($(window).height());
+      $(".rules").css("min-height", $(window).height());
       break;
 
     case "arena":
@@ -44,12 +45,6 @@ function renderUI() {
       break;
   }
 }
-
-
-
-
-
-
 
 // $(".start").click(function() {
 //   gameConfig.pos = "calibrate";
