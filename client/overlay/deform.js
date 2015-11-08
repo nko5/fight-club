@@ -104,7 +104,7 @@ export function startFaceTracking(user) {
   }
 }
 
-export function deformFace(user) {
+export function deformFace(user, deformType = "unwell") {
   var vid  = document.getElementById(PLAYER_TO_ELEMENT[user].element);
 
   vid.oncanplay = function(){
@@ -208,7 +208,7 @@ export function deformFace(user) {
         parameters[i] += ph['component '+(i-3)];
       }
       for (var i = 0;i < pnums;i++) {
-        ph['component '+(i+3)] = presets['unwell'][i];
+        ph['component '+(i+3)] = presets[deformType][i];
       }
 
       positions = ctrack.calculatePositions(parameters);
