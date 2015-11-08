@@ -30,7 +30,8 @@ function startGameWithIce() {
 
     time(msg) {
       if (!msg.ts) {
-        throw new Error('TODO: reconnect with another player');
+        client.sendReady();
+        return;
       }
 
       client.trackRestime(msg.ts);
