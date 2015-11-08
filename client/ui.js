@@ -26,7 +26,9 @@ export default {
     console.log('BELL!!');
   },
 
-  showSelfAttack(type) {
+  showSelfAttack(type, millis, extra) {
+    // if extra > 0, user has cheated
+    // let him know and regret this
     console.log('ATTACK:PEER!', type);
   },
 

@@ -1,5 +1,5 @@
-import {startTracking} from './motion-detection/app';
 import getcam from './util/getcam';
+import Motion from './util/motion';
 import ui from './ui';
 
 const CHEAT_THRESHOLD = 3;
@@ -10,6 +10,7 @@ export default class Client {
     this.socket = socket;
     this.peerjs = null;
     this.stream = null;
+    this.motion = null;
 
     this._opponent = '';
     this._countActions = null;
@@ -22,7 +23,7 @@ export default class Client {
       .then(stream => ui.setSelfStream(stream))
       .then(stream => {
         this.stream = stream;
-        this.startTracking();
+        this.motion = new Motion(stream, act => this._motion(act));
         return stream;
       })
       .then(() => {
@@ -62,22 +63,8 @@ export default class Client {
     this.sendMsg({type: 'restime', opponent: this._opponent, millis});
   }
 
-  startTracking() {
-    console.log('! log: recording all attacks');
-    startTracking(this.stream, act => {
-      if(this._countActions) {
-        this._actionCount++;
-      }
-
-      if(this._actionCallback) {
-        const callback = this._actionCallback;
-        this._actionCallback = null;
-        callback(act);
-      }
-    });
-  }
-
   trackRestime(ts) {
+    this.motion.start();
     var now = Date.now();
     if (now > ts) {
       console.log('! log: way past attack time');
@@ -103,6 +90,18 @@ export default class Client {
       .then(() => this.sendSchedule());
   }
 
+  _motion(act) {
+    if(this._countActions) {
+      this._actionCount++;
+    }
+
+    if(this._actionCallback) {
+      const callback = this._actionCallback;
+      this._actionCallback = null;
+      callback(act);
+    }
+  }
+
   _answer(call, stream) {
     this._opponent = call.peer;
     return new Promise((resolve, reject) => {
@@ -120,10 +119,13 @@ export default class Client {
 
   _track() {
     ui.showAttackBell();
+    let extra = 0;
+
     this._countActions = false;
     console.log('this._actionCount:', this._actionCount);
     if (this._actionCount > CHEAT_THRESHOLD) {
-      console.log('CHEAT!!');
+      console.log('! log: cheat detected');
+      extra = 1000;
       return;
     }
 
@@ -131,8 +133,10 @@ export default class Client {
     this._actionCallback = act => {
       this._actionCallback = null;
       const millis = Date.now() - startTime;
-      ui.showSelfAttack(act);
-      this.sendRestime(millis);
+      ui.showSelfAttack(act, millis, extra);
+      this.sendRestime(millis + extra);
     };
+
+    this.motion.stop();
   }
 }
