@@ -251,9 +251,11 @@ ol li a {
 
 #img-win, #img-lose {
   display: none;
+  width: 500px;
+  left: calc(50% - 244px);
   position: fixed;
   z-index: 10;
-  top: 250px;
+  top: 305px;
 }
 
 button {
