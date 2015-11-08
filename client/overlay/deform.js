@@ -98,7 +98,27 @@ var presets = {
 	"none" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 };
 
-export function deformFace(user, deformType = "unwell") {
+var phHolder = {};
+var deformTypeHolder = {
+  peer: "none",
+  self: "none"
+};
+var hitsHolder = {
+  peer: 0,
+  self: 0
+};
+
+export function deformFace(user, deformType = "unwell", hits) {
+  deformTypeHolder[user] = deformType;
+  hitsHolder[user] = hits;
+}
+
+export function initDeformFace(user) {
+  if(phHolder[user]){
+    deformTypeHolder[user] = "none";
+    hitsHolder[user] = 0;
+    return ;
+  }
   var vid  = document.getElementById(PLAYER_TO_ELEMENT[user].element);
   var pnums = pModel.shapeModel.eigenValues.length-2;
   var parameterHolder = function() {
@@ -108,14 +128,14 @@ export function deformFace(user, deformType = "unwell") {
   	this.presets = 0;
   };
 
-  var ph = new parameterHolder();
+  phHolder[user] = new parameterHolder();
 
   var animationRequest;
   var positions;
   var ctrack = new clm.tracker();
 
   var overlay = document.getElementById(PLAYER_TO_ELEMENT[user].overlay);
-  overlay.style.visibility = "hidden";
+  // overlay.style.visibility = "hidden";
   var overlayCC = overlay.getContext('2d');
 
   // canvas for copying videoframes to
@@ -166,6 +186,10 @@ export function deformFace(user, deformType = "unwell") {
       tempPos[1] = (item[1] - item62[1])*1.3 + item62[1];
       addPos.push(tempPos);
     }
+    if(typeof pos.concat !== "function"){
+      animationRequest = requestAnimFrame(drawMaskLoop);
+      return;
+    }
     // merge with pos
     var newPos = pos.concat(addPos);
 
@@ -177,8 +201,14 @@ export function deformFace(user, deformType = "unwell") {
     // get position of face
 
     var parameters = ctrack.getCurrentParameters();
+    var ph = phHolder[user];
+    var deformType = deformTypeHolder[user];
     for (var i = 0;i < pnums;i++) {
-      ph['component '+(i+3)] = presets[deformType][i];
+      if(i === 6) {
+        ph['component '+(i+3)] = hitsHolder[user] * 2;
+      } else {
+        ph['component '+(i+3)] = presets[deformType][i];
+      }
     }
     for (var i = 6;i < parameters.length;i++) {
       parameters[i] += ph['component '+(i-3)];
