@@ -39,4 +39,8 @@ export default {
   showWinMessage() {
     console.log('WIN!');
   },
+
+  showNextRound(round) {
+    console.log('ROUND %d', round);
+  },
 };
