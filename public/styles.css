@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#battlefield {
+  width: 810px;
+  min-height: 300px;
+  margin: 0 auto;
+}
+
+.video-container {
+  float: left;
+  width: 400px;
+  height: 300px;
+  background: red;
+  position: relative;
+}
+
+.video-container+.video-container {
+  float: right;
+}
+
+.video-container video, .video-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -o-transform : scaleX(-1);
+	-webkit-transform : scaleX(-1);
+	transform : scaleX(-1);
+	-ms-filter : fliph; /*IE*/
+	filter : fliph; /*IE*/
+}
